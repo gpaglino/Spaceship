@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=3 uid="uid://c13fbvinucsav"]
+
+[ext_resource type="Script" path="res://control.gd" id="1_reohx"]
+[ext_resource type="Texture2D" uid="uid://0f71b0u4p6iv" path="res://assets/e4db53c04c47209dfeca7a2cc31d8b47.jpg" id="2_o52m1"]
+[ext_resource type="Texture2D" uid="uid://c68f0p2ftrof4" path="res://assets/nombre sin fondo.png" id="3_r1a0y"]
+[ext_resource type="Texture2D" uid="uid://dkxu7wtrbgibl" path="res://assets/68496683-la-textura-del-patrón-de-la-placa-de-metal-para-fines-de-textura-antideslizante-en-efecto-clave-el.jpg" id="4_o6omq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a6a6g"]
+texture = ExtResource("4_o6omq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5rv31"]
+texture = ExtResource("4_o6omq")
+
+[node name="MenuInicio" type="Node2D"]
+position = Vector2(-103, -202)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 85.0
+offset_top = 218.0
+offset_right = 1214.0
+offset_bottom = 838.0
+script = ExtResource("1_reohx")
+metadata/_edit_group_ = true
+
+[node name="imagenDefondo" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -15.0
+offset_right = 1160.0
+offset_bottom = 642.0
+texture = ExtResource("2_o52m1")
+expand_mode = 1
+
+[node name="NombreJuegoImagen" type="TextureRect" parent="Control"]
+layout_mode = 2
+offset_left = 235.0
+offset_top = -98.0
+offset_right = 892.0
+offset_bottom = 313.0
+texture = ExtResource("3_r1a0y")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -48.0
+offset_right = 56.5
+offset_bottom = 232.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="jugar" type="Button" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_a6a6g")
+text = "JUGAR"
+
+[node name="salir" type="Button" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_5rv31")
+text = "SALIR
+"
+icon_alignment = 1
+
+[node name="creditos" type="Button" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_5rv31")
+text = "CREDITOS
+"
+icon_alignment = 1
+
+[connection signal="pressed" from="Control/VBoxContainer/jugar" to="Control" method="_on_jugar_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/salir" to="Control" method="_on_salir_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/creditos" to="Control" method="_on_salir_pressed"]
