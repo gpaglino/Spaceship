@@ -4,10 +4,7 @@ const ROCORRIDO_BALA = preload("res://escenas/Balas.tscn")
 
 var speed = 200  # Velocidad del movimiento en píxeles por segundo
 var velocity = Vector2.ZERO  # Vector de movimiento
-
-
-var time := 0.0 #velocidad para los disparos
-#almacena si dispara o no
+var time := 0.0  # Temporizador para disparos
 var fire : bool
 
 func _process(delta):
@@ -34,8 +31,9 @@ func _process(delta):
 	# Llamar a la función que limita el movimiento dentro de la pantalla
 	_keep_within_screen()
 	
-	#funcion para disparar 
+	# Función para disparar 
 	fire_bullets(delta)
+
 # Función para mantener el Sprite dentro de los límites de la pantalla
 func _keep_within_screen():
 	var screen_size = get_viewport_rect().size  # Obtener el tamaño de la pantalla
@@ -57,13 +55,20 @@ func _keep_within_screen():
 
 func fire_bullets(delta):
 	time += delta
-	fire = Input.is_action_just_pressed("ui_accept")
+	fire = Input.is_action_just_pressed("ui_accept")  # Cambia esta línea si necesitas otro input
 	
 	if fire and time >= 0.2:
-		var inst_bullet = ROCORRIDO_BALA.instantiate()
-		get_parent().add_child(inst_bullet)
-		inst_bullet.direction = inst_bullet.DireccionBala.TOP
-		inst_bullet.global_position = $SpawnearBala.global_position
-		#$Laser.play()
-		
+		shoot_bullet(Balas.DireccionBala.TOP)  # Dispara hacia arriba
 		time = 0.0
+
+	# Detectar disparos hacia arriba y abajo
+	if Input.is_action_just_pressed("ui_select"):  # Espacio
+		shoot_bullet(Balas.DireccionBala.TOP)  # Disparar hacia arriba
+	elif Input.is_action_just_pressed("ui_cancel"):  # Control
+		shoot_bullet(Balas.DireccionBala.BOTTOM)  # Disparar hacia abajo
+
+func shoot_bullet(direction):
+	var inst_bullet = ROCORRIDO_BALA.instantiate()  # Instancia la bala
+	get_parent().add_child(inst_bullet)  # Agrega la bala al nodo padre
+	inst_bullet.direction = direction  # Establece la dirección de la bala
+	inst_bullet.global_position = position  # Establece la posición inicial de la bala

@@ -1,0 +1,5 @@
+res://escenas/menu_inicio.tscn
+res://escenas/escena_del_guego.tscn
+res://balas.gd
+res://Nave.gd
+res://escenas/Balas.tscn
