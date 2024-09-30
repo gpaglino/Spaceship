@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnh7a8cnv6wom"]
+[gd_scene load_steps=5 format=3 uid="uid://cnh7a8cnv6wom"]
 
-[ext_resource type="Script" path="res://escena_del_guego.gd" id="1_nfi1q"]
 [ext_resource type="Texture2D" uid="uid://i7cmuxxk78xu" path="res://assets/Imagen de WhatsApp 2024-09-26 a las 01.28.12_7496c51c.png" id="2_rx04o"]
 [ext_resource type="Texture2D" uid="uid://c3q2v0jbp436c" path="res://assets/OIG3.jpeg" id="3_0fdsq"]
 [ext_resource type="Script" path="res://Nave.gd" id="4_2nl47"]
@@ -11,7 +10,6 @@ height = 321.31
 
 [node name="EscenaDelGuego" type="Node2D"]
 position = Vector2(-3, -1)
-script = ExtResource("1_nfi1q")
 metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
