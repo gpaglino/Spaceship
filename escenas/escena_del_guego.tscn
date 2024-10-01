@@ -1,18 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnh7a8cnv6wom"]
+[gd_scene load_steps=7 format=3 uid="uid://cnh7a8cnv6wom"]
 
-[ext_resource type="Script" path="res://escena_del_guego.gd" id="1_nfi1q"]
-[ext_resource type="Texture2D" uid="uid://i7cmuxxk78xu" path="res://assets/Imagen de WhatsApp 2024-09-26 a las 01.28.12_7496c51c.png" id="2_rx04o"]
-[ext_resource type="Texture2D" uid="uid://c3q2v0jbp436c" path="res://assets/OIG3.jpeg" id="3_0fdsq"]
-[ext_resource type="Script" path="res://Nave.gd" id="4_2nl47"]
+[ext_resource type="Texture2D" uid="uid://i7cmuxxk78xu" path="res://assets/imagenes/Imagen de WhatsApp 2024-09-26 a las 01.28.12_7496c51c.png" id="2_rx04o"]
+[ext_resource type="Texture2D" uid="uid://c3q2v0jbp436c" path="res://assets/imagenes/OIG3.jpeg" id="3_0fdsq"]
+[ext_resource type="AudioStream" uid="uid://cl8kkuh354dpa" path="res://assets/Musica y sonidos/sonidoDisparo.wav" id="4_0jtae"]
+[ext_resource type="Script" path="res://scripts/Nave.gd" id="4_2nl47"]
+[ext_resource type="PackedScene" uid="uid://dfwhymo4f0t8s" path="res://escenas/meteorito.tscn" id="5_t0iwo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t0jx8"]
-radius = 67.1821
-height = 321.31
+radius = 62.3834
+height = 289.705
 
-[node name="EscenaDelGuego" type="Node2D"]
+[node name="EscenaDelJuego" type="Node2D"]
 position = Vector2(-3, -1)
-script = ExtResource("1_nfi1q")
-metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1166.0
@@ -27,12 +26,22 @@ texture = ExtResource("2_rx04o")
 script = ExtResource("4_2nl47")
 metadata/_edit_group_ = true
 
+[node name="SonidoDisparo" type="AudioStreamPlayer2D" parent="Nave"]
+position = Vector2(85.0002, 215.366)
+stream = ExtResource("4_0jtae")
+volume_db = 13.182
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Nave"]
 position = Vector2(0, -2.63369)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Nave/CharacterBody2D"]
+position = Vector2(0, 13.1684)
 shape = SubResource("CapsuleShape2D_t0jx8")
 
 [node name="SpawnearBala" type="Marker2D" parent="Nave"]
-position = Vector2(-2.39936, -134.318)
+position = Vector2(-4.79871, -160.655)
+scale = Vector2(0.1, 0.1)
 gizmo_extents = 24.1
+
+[node name="Meteorito" parent="." instance=ExtResource("5_t0iwo")]
+position = Vector2(557, 153)

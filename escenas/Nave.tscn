@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj51vdn3afk37"]
+
+[ext_resource type="Texture2D" uid="uid://i7cmuxxk78xu" path="res://assets/imagenes/Imagen de WhatsApp 2024-09-26 a las 01.28.12_7496c51c.png" id="1_rtyaa"]
+[ext_resource type="Script" path="res://scripts/Nave.gd" id="2_tjqpn"]
+[ext_resource type="AudioStream" uid="uid://cl8kkuh354dpa" path="res://assets/Musica y sonidos/sonidoDisparo.wav" id="3_h6bnn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t0jx8"]
+radius = 62.3834
+height = 289.705
+
+[node name="Nave" type="Sprite2D"]
+position = Vector2(554, 565)
+scale = Vector2(0.416778, 0.379696)
+texture = ExtResource("1_rtyaa")
+script = ExtResource("2_tjqpn")
+metadata/_edit_group_ = true
+
+[node name="SonidoDisparo" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(85.0002, 215.366)
+stream = ExtResource("3_h6bnn")
+volume_db = 13.182
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(0, -2.63369)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 13.1684)
+shape = SubResource("CapsuleShape2D_t0jx8")
+
+[node name="SpawnearBala" type="Marker2D" parent="."]
+position = Vector2(-4.79871, -160.655)
+scale = Vector2(0.1, 0.1)
+gizmo_extents = 24.1
