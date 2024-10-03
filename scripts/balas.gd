@@ -36,3 +36,14 @@ static func shoot(direction: DireccionBala, position: Vector2, parent: Node) -> 
 	bala.global_position = position  # Establecer la posición inicial de la bala
 	parent.add_child(bala)  # Agregar la bala al nodo padre
 	return bala  # Retornar la instancia de la bala
+
+
+#func _on_body_entered(body: Node2D) -> void:
+	#if body.name == "Meteorito":
+		#queue_free()  # Eliminamos la bala cuando colisiona con el meteorito
+	
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.name == "Meteorito":
+		queue_free()  # Eliminamos la bala cuando colisiona con el meteorito

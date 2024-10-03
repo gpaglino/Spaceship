@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c13fbvinucsav"]
 
-[ext_resource type="Script" path="res://scripts/control.gd" id="1_reohx"]
+[ext_resource type="Script" path="res://scripts/MenuInicio.gd" id="1_reohx"]
 [ext_resource type="Texture2D" uid="uid://0f71b0u4p6iv" path="res://assets/imagenes/e4db53c04c47209dfeca7a2cc31d8b47.jpg" id="2_o52m1"]
 [ext_resource type="Texture2D" uid="uid://c68f0p2ftrof4" path="res://assets/imagenes/nombre sin fondo.png" id="3_r1a0y"]
 [ext_resource type="Texture2D" uid="uid://dkxu7wtrbgibl" path="res://assets/imagenes/68496683-la-textura-del-patrón-de-la-placa-de-metal-para-fines-de-textura-antideslizante-en-efecto-clave-el.jpg" id="4_o6omq"]
