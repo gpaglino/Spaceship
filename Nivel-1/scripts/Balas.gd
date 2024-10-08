@@ -1,6 +1,6 @@
 extends Area2D
 
-
+class_name Balas
 # Velocidad de la bala
 @export
 var speed := 600
@@ -29,8 +29,9 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	queue_free()  # Eliminar el objeto para liberar memoria
 
 # Función para crear una nueva bala
-static func shoot(direction: DireccionBala, position: Vector2, parent: Node) -> Balas:
-	var bala = Balas.new()  # Crear una nueva instancia de Balas
+static func shoot(direction: DireccionBala, position: Vector2, parent: Node) -> Node2D:
+	var BalaScene = preload("res://Nivel-1/escenas/Balas.tscn")  # Asegúrate de que la ruta es correcta
+	var bala = BalaScene.instantiate()  # Instanciar la escena de la bala
 	bala.direction = direction  # Establecer la dirección de la bala
 	bala.global_position = position  # Establecer la posición inicial de la bala
 	parent.add_child(bala)  # Agregar la bala al nodo padre

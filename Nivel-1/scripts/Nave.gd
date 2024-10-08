@@ -4,7 +4,7 @@ class_name Nave
 
 const ROCORRIDO_BALA = preload("res://Nivel-1/escenas/Balas.tscn") 
 var explosion_escena = preload("res://Nivel-1/escenas/Explosion.tscn")
-
+const Balas = preload("res://Nivel-1/scripts/Balas.gd")
 
 
 var speed = 350  # Velocidad del movimiento en píxeles por segundo
@@ -75,18 +75,18 @@ func _keep_within_screen():
 
 func fire_bullets(delta):
 	time += delta
-	fire = Input.is_action_just_pressed("ui_accept")  # Cambia esta línea si necesitas otro input
-	
-	if fire and time >= 0.2:
-		shoot_bullet(Balas.DireccionBala.TOP)  # Dispara hacia arriba
-		time = 0.0
+	var fire = Input.is_action_just_pressed("ui_accept")  # Detectar el disparo
 
-	# Detectar disparos hacia arriba y abajo
-	if Input.is_action_just_pressed("ui_select"):  # Espacio
-		shoot_bullet(Balas.DireccionBala.TOP)  # Disparar hacia arriba
-	elif Input.is_action_just_pressed("ui_cancel"):  # Control
-		shoot_bullet(Balas.DireccionBala.BOTTOM)  # Disparar hacia abajo
-	
+	# Control de disparo hacia arriba con un intervalo de tiempo
+	if fire and time >= 0.2:
+		shoot_bullet(Balas.DireccionBala.TOP)  # Acceder a la dirección de la bala
+		time = 0.0  # Reiniciar el temporizador
+
+# Detectar disparos hacia arriba o hacia abajo con otros inputs
+	if Input.is_action_just_pressed("ui_select"):  # Disparar hacia arriba
+		shoot_bullet(Balas.DireccionBala.TOP)
+	elif Input.is_action_just_pressed("ui_cancel"):  # Disparar hacia abajo
+		shoot_bullet(Balas.DireccionBala.BOTTOM)
 	
 	
 	#FUNCION DE DISPARAR BALA
