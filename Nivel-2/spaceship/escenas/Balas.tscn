@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://lj2epfum3qsi"]
+
+[ext_resource type="Script" path="res://balas.gd" id="1_gcm0n"]
+[ext_resource type="Texture2D" uid="uid://qocytw7npk8u" path="res://assets/bala sin fondo.png" id="2_buv2r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6jxw"]
+radius = 3.0
+height = 42.0
+
+[node name="Balas" type="Area2D"]
+script = ExtResource("1_gcm0n")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(34, 32)
+scale = Vector2(0.0397959, 0.044898)
+texture = ExtResource("2_buv2r")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(34, 31)
+shape = SubResource("CapsuleShape2D_r6jxw")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(34, 31)
+scale = Vector2(0.3, 2.15)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

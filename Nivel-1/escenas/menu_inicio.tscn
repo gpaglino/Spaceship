@@ -1,0 +1,106 @@
+[gd_scene load_steps=9 format=3 uid="uid://c13fbvinucsav"]
+
+[ext_resource type="Script" path="res://Nivel-1/scripts/MenuInicio.gd" id="1_4rh70"]
+[ext_resource type="Texture2D" uid="uid://0f71b0u4p6iv" path="res://Nivel-2/assets/imagenes/e4db53c04c47209dfeca7a2cc31d8b47.jpg" id="2_ql2p1"]
+[ext_resource type="Texture2D" uid="uid://c68f0p2ftrof4" path="res://Nivel-2/assets/imagenes/nombre sin fondo.png" id="3_ohxsc"]
+[ext_resource type="Texture2D" uid="uid://dkxu7wtrbgibl" path="res://Nivel-2/assets/imagenes/68496683-la-textura-del-patrón-de-la-placa-de-metal-para-fines-de-textura-antideslizante-en-efecto-clave-el.jpg" id="4_lec7s"]
+[ext_resource type="AudioStream" uid="uid://bbn6554iledti" path="res://Nivel-2/assets/Musica y sonidos/1. Into The Spaceship.wav" id="5_4kqb2"]
+[ext_resource type="Script" path="res://Nivel-1/scripts/audio_stream_player_2d.gd" id="6_yd0mp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a6a6g"]
+texture = ExtResource("4_lec7s")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5rv31"]
+texture = ExtResource("4_lec7s")
+
+[node name="MenuInicio" type="Node2D"]
+position = Vector2(-103, -202)
+
+[node name="MenuInicio" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 85.0
+offset_top = 218.0
+offset_right = 1214.0
+offset_bottom = 838.0
+script = ExtResource("1_4rh70")
+metadata/_edit_group_ = true
+
+[node name="imagenDefondo" type="TextureRect" parent="MenuInicio"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -15.0
+offset_right = 1160.0
+offset_bottom = 642.0
+texture = ExtResource("2_ql2p1")
+expand_mode = 1
+
+[node name="NombreJuegoImagen" type="TextureRect" parent="MenuInicio"]
+layout_mode = 2
+offset_left = 235.0
+offset_top = -98.0
+offset_right = 892.0
+offset_bottom = 313.0
+texture = ExtResource("3_ohxsc")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuInicio"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -48.0
+offset_right = 56.5
+offset_bottom = 232.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="jugar" type="Button" parent="MenuInicio/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_a6a6g")
+text = "JUGAR"
+
+[node name="salir" type="Button" parent="MenuInicio/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_5rv31")
+text = "SALIR
+"
+icon_alignment = 1
+
+[node name="creditos" type="Button" parent="MenuInicio/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_5rv31")
+text = "CREDITOS
+"
+icon_alignment = 1
+
+[node name="MusicaMenu" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_4kqb2")
+volume_db = -12.0
+autoplay = true
+script = ExtResource("6_yd0mp")
+
+[connection signal="pressed" from="MenuInicio/VBoxContainer/jugar" to="MenuInicio" method="_on_jugar_pressed"]
+[connection signal="pressed" from="MenuInicio/VBoxContainer/salir" to="MenuInicio" method="_on_salir_pressed"]
+[connection signal="pressed" from="MenuInicio/VBoxContainer/creditos" to="MenuInicio" method="_on_salir_pressed"]

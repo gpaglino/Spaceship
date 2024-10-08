@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://o06ha7ysl7lv"]
+
+[ext_resource type="FontFile" uid="uid://cemyfvxunkiuo" path="res://Nivel-1/assets/fuentes/Kenney Future Square.ttf" id="1_77esh"]
+[ext_resource type="Script" path="res://Nivel-1/scripts/game_over.gd" id="1_p1vo4"]
+[ext_resource type="Texture2D" uid="uid://dkxu7wtrbgibl" path="res://Nivel-2/assets/imagenes/68496683-la-textura-del-patrón-de-la-placa-de-metal-para-fines-de-textura-antideslizante-en-efecto-clave-el.jpg" id="3_yveus"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_geny5"]
+font = ExtResource("1_77esh")
+font_size = 37
+font_color = Color(1, 0.14902, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a2tvd"]
+texture = ExtResource("3_yveus")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aa5oi"]
+texture = ExtResource("3_yveus")
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p1vo4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.997
+anchor_bottom = 0.994
+offset_left = -2.0
+offset_top = -8.0
+offset_right = 5.45605
+offset_bottom = 4.888
+color = Color(0.075058, 0.148533, 0.341318, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.964
+anchor_bottom = 0.5
+offset_left = 174.0
+offset_top = 69.0
+offset_right = -159.528
+offset_bottom = -36.0
+
+[node name="Label" type="RichTextLabel" parent="CenterContainer"]
+custom_minimum_size = Vector2(720, 200)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.508686, 0.00147424, 0.697398, 1)
+theme_override_fonts/normal_font = ExtResource("1_77esh")
+theme_override_font_sizes/normal_font_size = 126
+bbcode_enabled = true
+text = "[wave][center]GAME OVER[/center][/wave]
+"
+
+[node name="Label2" type="Label" parent="CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.74714, 0.0229115, 0.662154, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "
+
+
+
+
+no lograste defender saturno "
+label_settings = SubResource("LabelSettings_geny5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = 63.0
+offset_right = 18.0
+offset_bottom = 343.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="reintentar" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_a2tvd")
+text = "REINTENTAR"
+
+[node name="salir" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_aa5oi")
+text = "SALIR
+"
+icon_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/reintentar" to="." method="_on_reintentar_pressed"]
+[connection signal="pressed" from="VBoxContainer/salir" to="." method="_on_salir_pressed"]

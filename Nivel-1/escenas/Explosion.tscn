@@ -1,0 +1,112 @@
+[gd_scene load_steps=16 format=3 uid="uid://ddnuhqyjb0a6m"]
+
+[ext_resource type="Script" path="res://Nivel-1/scripts/explosion.gd" id="2_qpdxj"]
+[ext_resource type="AudioStream" uid="uid://dgca5myj3tcg1" path="res://Nivel-1/assets/Musica y sonidos/warrior-kick-45949.mp3" id="3_qe7vs"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ghi1x"]
+load_path = "res://.godot/imported/explosions_sprite.png-1f544245d4716d5ea273ed8c50a6f599.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a20hq"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12cm6"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8471x"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(320, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qwhn"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(0, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s10vd"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(160, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahfat"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(320, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aowqr"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(0, 320, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rlmn"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(160, 320, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t526b"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(320, 320, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r24en"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(0, 480, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr2ot"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(160, 480, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ffi2p"]
+resource_local_to_scene = true
+resource_name = "explosion"
+animations = [{
+"frames": [{
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_a20hq")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_12cm6")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_8471x")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_2qwhn")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_s10vd")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_ahfat")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_aowqr")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_3rlmn")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_t526b")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_r24en")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_gr2ot")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 10.0
+}]
+
+[node name="Explosion" type="AnimatedSprite2D"]
+texture_repeat = 2
+position = Vector2(534, 217)
+scale = Vector2(0.486458, 0.514062)
+sprite_frames = SubResource("SpriteFrames_ffi2p")
+animation = &"explosion"
+autoplay = "explosion"
+frame = 10
+frame_progress = 1.0
+script = ExtResource("2_qpdxj")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qe7vs")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

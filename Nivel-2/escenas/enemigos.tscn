@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsj4ihj5g6sjt"]
+
+[ext_resource type="Script" path="res://Nivel-2/scripts/enemigos.gd" id="1_baawg"]
+[ext_resource type="Texture2D" uid="uid://dm2cmcrv0573j" path="res://Nivel-2/assets/imagenes/enemigo.png" id="2_78weo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0jgc"]
+radius = 620.043
+
+[node name="Enemigos" type="Area2D"]
+position = Vector2(201, 111)
+script = ExtResource("1_baawg")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.00003, 1)
+scale = Vector2(0.0460938, 0.05)
+shape = SubResource("CircleShape2D_k0jgc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 1)
+scale = Vector2(0.0460938, 0.05)
+texture = ExtResource("2_78weo")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(3, 20)

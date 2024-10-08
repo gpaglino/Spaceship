@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt1cq0s0und3q"]
+
+[ext_resource type="VideoStream" path="res://Nivel-1/assets/imagenes/cinematica nivel 1.ogv" id="1_3n7f6"]
+
+[sub_resource type="GDScript" id="GDScript_byad8"]
+
+[node name="SplashScreenN1" type="Node2D"]
+script = SubResource("GDScript_byad8")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_right = 1162.0
+offset_bottom = 656.0
+stream = ExtResource("1_3n7f6")
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

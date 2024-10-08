@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="Spaceship"
-run/main_scene="res://escenas/menu_inicio.tscn"
+run/main_scene="res://Nivel-1/escenas/menu_inicio.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/image="res://Nivel-1/assets/imagenes/nombre sin fondo.png"
 config/icon="res://icon.svg"
 
 [input]
