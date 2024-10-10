@@ -104,6 +104,7 @@ shader = ExtResource("6_j6k5m")
 shader_parameter/scroll_speed = 0.4
 
 [node name="nivel_2" type="Node2D"]
+position = Vector2(85, 43)
 script = ExtResource("1_opfvc")
 
 [node name="SpawnEnemigos" type="Timer" parent="."]
@@ -117,13 +118,14 @@ autoplay = true
 position = Vector2(598, 586)
 
 [node name="Balas" parent="." instance=ExtResource("5_k50hj")]
-visible = false
+position = Vector2(209, 63)
 
 [node name="Enemigos" parent="." groups=["Enemigos"] instance=ExtResource("5_mny7e")]
 visible = false
 position = Vector2(122, -26)
 
 [node name="Explosion" parent="." instance=ExtResource("6_7lad4")]
+visible = false
 sprite_frames = SubResource("SpriteFrames_gayto")
 
 [node name="EscenarioEstrellas" type="ParallaxBackground" parent="."]
@@ -134,7 +136,7 @@ motion_mirroring = Vector2(0, 648)
 [node name="Sprite2D" type="Sprite2D" parent="EscenarioEstrellas/ParallaxLayer"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_dapq6")
-position = Vector2(574, 319)
+position = Vector2(581, 324)
 scale = Vector2(0.611811, 0.676319)
 texture = ExtResource("7_oi6wr")
 

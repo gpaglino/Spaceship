@@ -15,6 +15,7 @@ enum DireccionBala {
 }
 
 func _ready():
+	add_to_group("Enemigos")
 	$Timer.start()
 
 func _process(delta):
@@ -50,12 +51,13 @@ func destroy_enemigo():
 	# Añadir la explosión a la jerarquía de nodos
 	get_parent().add_child(explosion_instance)
 
-	# Buscar el nodo Explosion que es un AnimatedSprite2D usando la ruta proporcionada
+	# Buscar el nodo AnimatedSprite2D llamado Explosion directamente en la instancia de explosión
 	var animated_sprite = explosion_instance.get_node_or_null("Explosion")
-	
-	
-	animated_sprite.play("explosion")  # Reproducir la animación "explosion"
-	print("Error: No se encontró el nodo Explosion en la explosión")
 
-	# Eliminar el meteorito
+	if animated_sprite:
+		animated_sprite.play("explosion")  # Reproducir la animación "explosion"
+	else:
+		print("Error: No se encontró el nodo Explosion en la escena")
+
+	# Eliminar el meteorito (enemigo)
 	queue_free()

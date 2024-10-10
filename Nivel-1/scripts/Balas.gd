@@ -42,7 +42,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Meteoros"):
 		area.destroy()
 		queue_free()
-	elif area.is_in_group("Enemigos"):
-		area.destroy_enemigo()
-		queue_free()
-		
+	else: 
+		if area.is_in_group("Enemigos"):  # Comprobar si el área es un enemigo
+			area.destroy_enemigo()  # Llama a la función destroy_enemigo() en el enemigo
+			queue_free()  # Eliminar la bala  # Llama a la función en cada enemigo
