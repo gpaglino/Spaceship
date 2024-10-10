@@ -1,36 +1,130 @@
-[gd_scene load_steps=9 format=3 uid="uid://bupq32rhgylck"]
+[gd_scene load_steps=23 format=3 uid="uid://bupq32rhgylck"]
 
 [ext_resource type="Script" path="res://Nivel-2/scripts/nivel_2.gd" id="1_opfvc"]
 [ext_resource type="AudioStream" uid="uid://441jcralkavw" path="res://Nivel-2/assets/Musica y sonidos/nivel2.mp3" id="1_rplsf"]
 [ext_resource type="PackedScene" uid="uid://cj51vdn3afk37" path="res://Nivel-1/escenas/Nave.tscn" id="4_ik8or"]
 [ext_resource type="PackedScene" uid="uid://lj2epfum3qsi" path="res://Nivel-1/escenas/Balas.tscn" id="5_k50hj"]
 [ext_resource type="PackedScene" uid="uid://dsj4ihj5g6sjt" path="res://Nivel-2/escenas/enemigos.tscn" id="5_mny7e"]
+[ext_resource type="PackedScene" uid="uid://ddnuhqyjb0a6m" path="res://Nivel-1/escenas/Explosion.tscn" id="6_7lad4"]
 [ext_resource type="Shader" path="res://Nivel-2/scripts/nivel_2.gdshader" id="6_j6k5m"]
 [ext_resource type="Texture2D" uid="uid://dchxa7ccoktn4" path="res://Nivel-1/assets/imagenes/fondoespacio2.png" id="7_oi6wr"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ghi1x"]
+load_path = "res://.godot/imported/explosions_sprite.png-1f544245d4716d5ea273ed8c50a6f599.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a20hq"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12cm6"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8471x"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(320, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qwhn"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(0, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s10vd"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(160, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahfat"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(320, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aowqr"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(0, 320, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rlmn"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(160, 320, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t526b"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(320, 320, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r24en"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(0, 480, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr2ot"]
+atlas = SubResource("CompressedTexture2D_ghi1x")
+region = Rect2(160, 480, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gayto"]
+resource_local_to_scene = true
+resource_name = "explosion"
+animations = [{
+"frames": [{
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_a20hq")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_12cm6")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_8471x")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_2qwhn")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_s10vd")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_ahfat")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_aowqr")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_3rlmn")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_t526b")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_r24en")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_gr2ot")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 10.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dapq6"]
 shader = ExtResource("6_j6k5m")
 shader_parameter/scroll_speed = 0.4
 
 [node name="nivel_2" type="Node2D"]
-position = Vector2(157, 116)
 script = ExtResource("1_opfvc")
 
 [node name="SpawnEnemigos" type="Timer" parent="."]
 
 [node name="Musica_nivel2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_rplsf")
-volume_db = -22.319
+volume_db = -52.391
 autoplay = true
 
 [node name="Nave" parent="." instance=ExtResource("4_ik8or")]
-position = Vector2(528, 437)
+position = Vector2(598, 586)
 
 [node name="Balas" parent="." instance=ExtResource("5_k50hj")]
 visible = false
 
-[node name="Enemigos" parent="." instance=ExtResource("5_mny7e")]
-position = Vector2(-73, 28)
+[node name="Enemigos" parent="." groups=["Enemigos"] instance=ExtResource("5_mny7e")]
+visible = false
+position = Vector2(122, -26)
+
+[node name="Explosion" parent="." instance=ExtResource("6_7lad4")]
+sprite_frames = SubResource("SpriteFrames_gayto")
 
 [node name="EscenarioEstrellas" type="ParallaxBackground" parent="."]
 

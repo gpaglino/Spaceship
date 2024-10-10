@@ -11,6 +11,7 @@ height = 110.0
 [node name="Nave" type="Area2D"]
 position = Vector2(623, 595)
 script = ExtResource("1_56c7m")
+metadata/_edit_group_ = true
 
 [node name="Nave" type="CollisionShape2D" parent="."]
 position = Vector2(-30, -36)
@@ -22,8 +23,9 @@ scale = Vector2(0.101389, 0.148449)
 texture = ExtResource("2_7njyt")
 
 [node name="SonidoDisparo" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-32, -40)
 stream = ExtResource("3_eup1o")
-volume_db = 21.333
+volume_db = -18.667
 
 [node name="SpawnearBala" type="Marker2D" parent="."]
 position = Vector2(-31, -100)

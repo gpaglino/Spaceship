@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://bupq32rhgylck"]
+
+[ext_resource type="Script" path="res://Nivel-2/scripts/nivel_2.gd" id="1_opfvc"]
+[ext_resource type="AudioStream" uid="uid://441jcralkavw" path="res://Nivel-2/assets/Musica y sonidos/nivel2.mp3" id="1_rplsf"]
+[ext_resource type="PackedScene" uid="uid://cj51vdn3afk37" path="res://Nivel-1/escenas/Nave.tscn" id="4_ik8or"]
+[ext_resource type="PackedScene" uid="uid://lj2epfum3qsi" path="res://Nivel-1/escenas/Balas.tscn" id="5_k50hj"]
+[ext_resource type="PackedScene" uid="uid://dsj4ihj5g6sjt" path="res://Nivel-2/escenas/enemigos.tscn" id="5_mny7e"]
+[ext_resource type="Shader" path="res://Nivel-2/scripts/nivel_2.gdshader" id="6_j6k5m"]
+[ext_resource type="Texture2D" uid="uid://dchxa7ccoktn4" path="res://Nivel-1/assets/imagenes/fondoespacio2.png" id="7_oi6wr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dapq6"]
+shader = ExtResource("6_j6k5m")
+shader_parameter/scroll_speed = 0.4
+
+[node name="nivel_2" type="Node2D"]
+script = ExtResource("1_opfvc")
+
+[node name="SpawnEnemigos" type="Timer" parent="."]
+
+[node name="Musica_nivel2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_rplsf")
+volume_db = -52.391
+autoplay = true
+
+[node name="Nave" parent="." instance=ExtResource("4_ik8or")]
+position = Vector2(598, 586)
+
+[node name="Balas" parent="." instance=ExtResource("5_k50hj")]
+visible = false
+
+[node name="Enemigos" parent="." instance=ExtResource("5_mny7e")]
+visible = false
+position = Vector2(122, -26)
+
+[node name="EscenarioEstrellas" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="EscenarioEstrellas"]
+motion_mirroring = Vector2(0, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="EscenarioEstrellas/ParallaxLayer"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_dapq6")
+position = Vector2(574, 319)
+scale = Vector2(0.611811, 0.676319)
+texture = ExtResource("7_oi6wr")
+
+[connection signal="timeout" from="SpawnEnemigos" to="Enemigos" method="_on_spawn_enemigos_timeout"]

@@ -6,10 +6,18 @@ func _ready():
 	crear_enemigos()
 	
 func crear_enemigos():
-	for i in range(8):
-		var enemy = enemigos.instantiate()  # Asegúrate de que sea una PackedScene
-		enemy.position = Vector2(100 + i * 100, 50)  # Posiciones horizontales
-		add_child(enemy)
+	var filas = 4
+	var columnas = 4
+	var espaciamiento_x = 70  # Distancia entre columnas
+	var espaciamiento_y = 70  # Distancia entre filas
+	var posicion_inicial_y = 10  # Ajusta este valor para subir o bajar las naves
+	
+	
+	for fila in range(filas):
+		for columna in range(columnas):
+			var enemy = enemigos.instantiate()
+			enemy.position = Vector2(100 + columna * espaciamiento_x, posicion_inicial_y + fila * espaciamiento_y)  # Sube la posición inicial
+			add_child(enemy)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
