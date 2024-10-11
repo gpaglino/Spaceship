@@ -3,22 +3,22 @@
 [ext_resource type="Script" path="res://Nivel-1/scripts/Balas.gd" id="1_og0as"]
 [ext_resource type="Texture2D" uid="uid://qocytw7npk8u" path="res://Nivel-2/assets/imagenes/bala sin fondo.png" id="2_2tgkf"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6jxw"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hr8jf"]
 radius = 3.0
 height = 42.0
 
 [node name="Balas" type="Area2D"]
-position = Vector2(171, 82)
+position = Vector2(134, 59)
 script = ExtResource("1_og0as")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, 22)
-scale = Vector2(0.0285714, 0.0469388)
+position = Vector2(-1.49999, 21.5)
+scale = Vector2(0.0459184, 0.0459184)
 texture = ExtResource("2_2tgkf")
 
 [node name="Balas" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 22)
-shape = SubResource("CapsuleShape2D_r6jxw")
+shape = SubResource("CapsuleShape2D_hr8jf")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(-1, 22)

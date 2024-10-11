@@ -37,12 +37,17 @@ static func shoot(direction: DireccionBala, position: Vector2, parent: Node) -> 
 	parent.add_child(bala)  # Agregar la bala al nodo padre
 	return bala  # Retornar la instancia de la bala
 
-	
+func limpiar_enemigos():
+	for enemigos in get_tree().get_nodes_in_group("Enemigos"):
+		enemigos.queue_free()  # Llama a la función destroy_enemigo() en el enemigo	
+		
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Meteoros"):
 		area.destroy()
 		queue_free()
 	else: 
 		if area.is_in_group("Enemigos"):  # Comprobar si el área es un enemigo
-			area.destroy_enemigo()  # Llama a la función destroy_enemigo() en el enemigo
+			area.destroy_enemigo()
+			area.call_deferred("queue_free")
 			queue_free()  # Eliminar la bala  # Llama a la función en cada enemigo
+	

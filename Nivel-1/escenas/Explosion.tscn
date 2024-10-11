@@ -107,6 +107,7 @@ script = ExtResource("2_qpdxj")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+visible = false
 stream = ExtResource("3_qe7vs")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

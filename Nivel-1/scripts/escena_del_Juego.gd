@@ -22,6 +22,7 @@ var vidas = 3
 func _ready() -> void:
 	
 	limpiar_meteoritos()
+	limpiar_enemigos()
 	
 	# Iniciar el temporizador
 	game_timer.start()
@@ -57,6 +58,10 @@ func _on_spawn_meteoro_timeout() -> void:
 func limpiar_meteoritos():
 	for meteoro in get_tree().get_nodes_in_group("Meteoros"):
 		meteoro.queue_free()
+func limpiar_enemigos():
+	for meteoro in get_tree().get_nodes_in_group("Enemigos"):
+		meteoro.queue_free()
+
 		
 #FUNCION PARA EL CONTADOR A 0
 func _on_game_timer_timeout():
@@ -69,8 +74,7 @@ func _on_game_timer_timeout():
 		# Detener el Timer para que no siga
 		game_timer.stop()
 
-		_perder_partida()
-
+		_ganar_partida()
 
 func actualizar_vidas():
 	# Ocultar los sprites de corazón según la cantidad de vidas restantes
@@ -101,6 +105,10 @@ func _perder_partida() -> void:
 	# Cambia a la escena de Game Over de forma diferida
 	call_deferred("cambiar_a_game_over")
 	
+func _ganar_partida():
+	get_tree().change_scene_to_file("res://Nivel-2/escenas/nivel_2.tscn")	
+	
+
 func cambiar_a_game_over() -> void:
 	get_tree().change_scene_to_file("res://Nivel-1/escenas/GameOver.tscn")	
 	

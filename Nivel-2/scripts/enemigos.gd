@@ -1,9 +1,9 @@
 extends Area2D
 
 
-var bullet_scene = preload("res://Nivel-1/escenas/Balas.tscn")
+var bullet_scene = preload("res://Nivel-2/escenas/balas_enemigos.tscn")
 
-var speed = 100  # Velocidad de movimiento horizontal
+var speed = 80  # Velocidad de movimiento horizontal
 var direction = 1  # Dirección inicial (1 para derecha, -1 para izquierda)
 var boundary_left = 10  # Límite izquierdo
 var boundary_right = 1000  # Límite derecho
@@ -41,6 +41,11 @@ func disparar():
 	get_parent().add_child(bullet)
 	
 func destroy_enemigo():
+	
+	# Detener cualquier proceso relacionado con el enemigo
+	if $Timer.is_stopped():
+		$Timer.stop()  # Detener el temporizador que controla los disparos
+		
 	# Cargar la escena de la explosión
 	var explosion_scene = preload("res://Nivel-1/escenas/Explosion.tscn")
 	var explosion_instance = explosion_scene.instantiate()  # Instancia la explosión
@@ -59,5 +64,5 @@ func destroy_enemigo():
 	else:
 		print("Error: No se encontró el nodo Explosion en la escena")
 
-	# Eliminar el meteorito (enemigo)
+	# Eliminar el enemigo
 	queue_free()

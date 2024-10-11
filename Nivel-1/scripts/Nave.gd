@@ -4,7 +4,7 @@ class_name Nave
 
 const ROCORRIDO_BALA = preload("res://Nivel-1/escenas/Balas.tscn") 
 var explosion_escena = preload("res://Nivel-1/escenas/Explosion.tscn")
-const Balas = preload("res://Nivel-1/scripts/Balas.gd")
+const Balas_script = preload("res://Nivel-1/scripts/Balas.gd")
 
 
 var speed = 350  # Velocidad del movimiento en píxeles por segundo
@@ -79,14 +79,14 @@ func fire_bullets(delta):
 
 	# Control de disparo hacia arriba con un intervalo de tiempo
 	if fire and time >= 0.2:
-		shoot_bullet(Balas.DireccionBala.TOP)  # Acceder a la dirección de la bala
+		shoot_bullet(Balas_script.DireccionBala.TOP)  # Acceder a la dirección de la bala
 		time = 0.0  # Reiniciar el temporizador
 
 # Detectar disparos hacia arriba o hacia abajo con otros inputs
 	if Input.is_action_just_pressed("ui_select"):  # Disparar hacia arriba
-		shoot_bullet(Balas.DireccionBala.TOP)
+		shoot_bullet(Balas_script.DireccionBala.TOP)
 	elif Input.is_action_just_pressed("ui_cancel"):  # Disparar hacia abajo
-		shoot_bullet(Balas.DireccionBala.BOTTOM)
+		shoot_bullet(Balas_script.DireccionBala.BOTTOM)
 	
 	
 	#FUNCION DE DISPARAR BALA
@@ -102,6 +102,26 @@ func shoot_bullet(direction):
 	# SE REPRODUCE EL SONIDO DE DISPARO POR CADA LLAMADA A ESTA FUNCION
 	$SonidoDisparo.play()
 
+#funcion para destruir la nave
+func destroy_nave():
+	# Cargar la escena de la explosión
+	var explosion_scene = preload("res://Nivel-1/escenas/Explosion.tscn")
+	var explosion_instance = explosion_scene.instantiate()  # Instancia la explosión
+
+	# Colocar la explosión en la posición actual de la nave
+	explosion_instance.global_position = global_position
+
+	# Añadir la explosión a la jerarquía de nodos
+	get_parent().add_child(explosion_instance)
+
+	# Buscar el nodo Explosion que es un AnimatedSprite2D usando la ruta proporcionada
+	var animated_sprite = explosion_instance.get_node_or_null("../Explosion")
+	
+	animated_sprite.play("explosion")  # Reproducir la animación "explosion"
+	print("Error: No se encontró el nodo Explosion en la explosión")
+
+	# Eliminar la nave
+	queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Meteoros"):

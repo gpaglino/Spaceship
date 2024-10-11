@@ -148,6 +148,7 @@ visible = false
 position = Vector2(573, 189)
 
 [node name="Nave" parent="." instance=ExtResource("4_cwsug")]
+position = Vector2(616, 512)
 
 [node name="Meteorito" parent="." groups=["Meteoros"] instance=ExtResource("5_t0iwo")]
 visible = false
