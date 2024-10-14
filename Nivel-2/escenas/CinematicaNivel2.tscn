@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bldhqy4b5mxqh"]
+
+[ext_resource type="Script" path="res://Nivel-2/scripts/CinematicaNivel2.gd" id="1_8patl"]
+[ext_resource type="VideoStream" path="res://Nivel-3/assets/imagenes/cinematicanivel2.ogv" id="1_sol17"]
+
+[node name="CinematicaNivel2" type="Node2D"]
+position = Vector2(5, 3)
+script = ExtResource("1_8patl")
+
+[node name="VideoStreamPlayer2" type="VideoStreamPlayer" parent="."]
+offset_left = -3.0
+offset_right = 1171.0
+offset_bottom = 646.0
+stream = ExtResource("1_sol17")
+expand = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 22.0
+one_shot = true
+
+[connection signal="finished" from="VideoStreamPlayer2" to="." method="_on_video_stream_player_2_finished"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

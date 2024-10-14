@@ -5,7 +5,7 @@ extends Node2D
 
 func _ready() -> void:
 	# Configurar el Timer
-	timer.wait_time = 14.5  # Duración en segundos
+	timer.wait_time = 25  # Duración en segundos
 	timer.one_shot = true  # Asegúrate de que el Timer se ejecute solo una vez
 	timer.start()  # Iniciar el Timer
 
@@ -21,5 +21,3 @@ func _on_timer_timeout() -> void:
 	# Cambiar a la escena principal del juego
 
 	get_tree().change_scene_to_file("res://Nivel-1/escenas/escena_del_Juego.tscn")
-	
-	pass # Replace with function body.

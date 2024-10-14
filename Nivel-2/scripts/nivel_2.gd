@@ -2,9 +2,17 @@ extends Node2D
 
 const enemigos = preload("res://Nivel-2/escenas/enemigos.tscn")
 const GAME_OVER = preload("res://Nivel-1/escenas/GameOver.tscn")
+const ESCENA_DEL_JUEGO = preload("res://Nivel-1/escenas/escena_del_Juego.tscn")
+@onready var cinematica_nivel_2: Node2D = $CinematicaNivel2
 
 func _ready():
+	
+	#var nivel1 = ESCENA_DEL_JUEGO.instantiate()
+	#
+	#nivel1.limpiar_enemigos()
+	borrarCinematica()
 	crear_enemigos()
+	
 	
 func crear_enemigos():
 	var filas = 4
@@ -43,6 +51,13 @@ func cambiar_a_game_over() -> void:
 	else:
 		print("Error: No se pudo instanciar la escena de Game Over")
 	
-	
+func borrarCinematica():
+		# Verificar si existe la cinemática en el árbol de nodos
+	var cinematica_node = get_tree().root.get_node_or_null("CinematicaNivel2")  # Cambia "Cinematica" al nombre del nodo de tu cinemática
+	# Si existe, eliminarla del árbol
+	if cinematica_node:
+		cinematica_node.queue_free()
+		
+
 func _process(delta: float) -> void:
 	pass

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3xvkavutpbt8"]
 
-[ext_resource type="Script" path="res://Nivel-2/escenas/balas_enemigos.gd" id="1_vxm5f"]
+[ext_resource type="Script" path="res://Nivel-2/scripts/balas_enemigos.gd" id="1_vxm5f"]
 [ext_resource type="Texture2D" uid="uid://cd8l0h8nqop47" path="res://Nivel-2/assets/imagenes/11.png" id="1_wv4sy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jxwdc"]

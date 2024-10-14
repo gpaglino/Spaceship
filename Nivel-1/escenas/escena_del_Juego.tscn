@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cnh7a8cnv6wom"]
+[gd_scene load_steps=25 format=3 uid="uid://cnh7a8cnv6wom"]
 
 [ext_resource type="Script" path="res://Nivel-1/scripts/escena_del_Juego.gd" id="1_sr8fm"]
 [ext_resource type="FontFile" uid="uid://cemyfvxunkiuo" path="res://Nivel-1/assets/fuentes/Kenney Future Square.ttf" id="2_gpi2h"]
@@ -112,7 +112,12 @@ size = Vector2(1156, 28)
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jmsx7"]
 load_path = "res://.godot/imported/heaartsinfon.png-f55988338b0080850c2fac703feeb0d7.ctex"
 
-[node name="EscenaDelJuego" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_c1c5o"]
+font = ExtResource("2_gpi2h")
+font_size = 18
+font_color = Color(0.54902, 0.921569, 1, 0.564706)
+
+[node name="EscenaDelJuego" type="Node2D" groups=["Meteoros", "Naves"]]
 position = Vector2(-7, -1)
 script = ExtResource("1_sr8fm")
 
@@ -151,8 +156,8 @@ position = Vector2(573, 189)
 position = Vector2(616, 512)
 
 [node name="Meteorito" parent="." groups=["Meteoros"] instance=ExtResource("5_t0iwo")]
-visible = false
 position = Vector2(569, 140)
+angular_damp = 0.0
 
 [node name="Explosion" parent="." instance=ExtResource("7_k3d83")]
 visible = false
@@ -171,9 +176,9 @@ shape = SubResource("RectangleShape2D_fvnxt")
 modulate = Color(1, 1, 1, 0.698039)
 layout_mode = 3
 anchors_preset = 0
-offset_left = 14.0
+offset_left = 101.0
 offset_top = 7.0
-offset_right = 133.0
+offset_right = 220.0
 offset_bottom = 47.0
 metadata/_edit_group_ = true
 
@@ -191,6 +196,14 @@ texture = SubResource("CompressedTexture2D_jmsx7")
 position = Vector2(98, 20)
 scale = Vector2(0.0397959, 0.0392857)
 texture = SubResource("CompressedTexture2D_jmsx7")
+
+[node name="SaturnoLabel" type="Label" parent="."]
+offset_left = 17.0
+offset_top = 15.0
+offset_right = 97.0
+offset_bottom = 40.0
+text = "SATURNO"
+label_settings = SubResource("LabelSettings_c1c5o")
 
 [connection signal="timeout" from="SpawnMeteoro" to="." method="_on_spawn_meteoro_timeout"]
 [connection signal="timeout" from="gameTimer" to="." method="_on_game_timer_timeout"]

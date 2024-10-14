@@ -6,6 +6,9 @@ class_name Meteorito
 #@onready var animacionExplosion = $"../Explosion"
 var speed = 25
 
+#rotacion de el meteorito
+var rotation_speed = randf_range(0.05, 0.3)  # Velocidad de rotación aleatoria
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var scal = randf_range(0.7, 1.2)  # Obtener una escala aleatoria entre 0.5 y 0.9
@@ -23,7 +26,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	position += Vector2(0, speed * delta)  # Mover el meteoro hacia abajo
-
+		# Rotar el meteorito sobre su eje
+	rotation += rotation_speed * delta
 
 func destroy():
 	# Cargar la escena de la explosión

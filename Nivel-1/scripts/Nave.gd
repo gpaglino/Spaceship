@@ -10,7 +10,7 @@ const Balas_script = preload("res://Nivel-1/scripts/Balas.gd")
 var speed = 350  # Velocidad del movimiento en píxeles por segundo
 var velocity = Vector2.ZERO  # Vector de movimiento
 var time := 0.0  # Temporizador para disparos
-var fire : bool
+#var fire : bool
 
 
 
@@ -125,9 +125,16 @@ func destroy_nave():
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Meteoros"):
+		
+		destroy_nave()
 		# Usa call_deferred para posponer la destrucción del meteoro
-		area.call_deferred("queue_free")
-
 		# Usa call_deferred para limpiar los meteoritos y cambiar la escena
 		get_parent()._perder_partida()
-	
+		area.call_deferred("queue_free")
+	else:
+		if area.is_in_group("Jefe"):
+			destroy_nave()
+		# Usa call_deferred para posponer la destrucción del meteoro
+		# Usa call_deferred para limpiar los meteoritos y cambiar la escena
+			get_parent()._perder_partida()
+			area.call_deferred("queue_free")

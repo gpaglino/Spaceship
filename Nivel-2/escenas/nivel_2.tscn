@@ -1,14 +1,16 @@
-[gd_scene load_steps=24 format=3 uid="uid://bupq32rhgylck"]
+[gd_scene load_steps=26 format=3 uid="uid://bupq32rhgylck"]
 
 [ext_resource type="Script" path="res://Nivel-2/scripts/nivel_2.gd" id="1_opfvc"]
 [ext_resource type="AudioStream" uid="uid://441jcralkavw" path="res://Nivel-2/assets/Musica y sonidos/nivel2.mp3" id="1_rplsf"]
 [ext_resource type="PackedScene" uid="uid://cj51vdn3afk37" path="res://Nivel-1/escenas/Nave.tscn" id="4_ik8or"]
 [ext_resource type="PackedScene" uid="uid://b3xvkavutpbt8" path="res://Nivel-2/escenas/balas_enemigos.tscn" id="5_0qoaj"]
+[ext_resource type="PackedScene" uid="uid://dfwhymo4f0t8s" path="res://Nivel-1/escenas/Meteorito.tscn" id="5_8q7na"]
 [ext_resource type="PackedScene" uid="uid://lj2epfum3qsi" path="res://Nivel-1/escenas/Balas.tscn" id="5_k50hj"]
 [ext_resource type="PackedScene" uid="uid://dsj4ihj5g6sjt" path="res://Nivel-2/escenas/enemigos.tscn" id="5_mny7e"]
 [ext_resource type="PackedScene" uid="uid://ddnuhqyjb0a6m" path="res://Nivel-1/escenas/Explosion.tscn" id="6_7lad4"]
 [ext_resource type="Shader" path="res://Nivel-2/scripts/nivel_2.gdshader" id="6_j6k5m"]
 [ext_resource type="Texture2D" uid="uid://dchxa7ccoktn4" path="res://Nivel-1/assets/imagenes/fondoespacio2.png" id="7_oi6wr"]
+[ext_resource type="PackedScene" uid="uid://bldhqy4b5mxqh" path="res://Nivel-2/escenas/CinematicaNivel2.tscn" id="10_t1gjc"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ghi1x"]
 load_path = "res://.godot/imported/explosions_sprite.png-1f544245d4716d5ea273ed8c50a6f599.ctex"
@@ -122,6 +124,8 @@ position = Vector2(592, 546)
 visible = false
 position = Vector2(137, 10)
 
+[node name="Meteorito" parent="." instance=ExtResource("5_8q7na")]
+
 [node name="BalasEnemigos" parent="." instance=ExtResource("5_0qoaj")]
 visible = false
 
@@ -144,5 +148,7 @@ material = SubResource("ShaderMaterial_dapq6")
 position = Vector2(580, 324)
 scale = Vector2(0.611811, 0.676319)
 texture = ExtResource("7_oi6wr")
+
+[node name="CinematicaNivel2" parent="." instance=ExtResource("10_t1gjc")]
 
 [connection signal="timeout" from="SpawnEnemigos" to="Enemigos" method="_on_spawn_enemigos_timeout"]

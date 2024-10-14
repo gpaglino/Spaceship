@@ -14,15 +14,15 @@ const CINEMATICA_N_1 = preload("res://Nivel-1/escenas/cinematicaN1.tscn")
 
 
 # Tiempo máximo de juego 
-var time_left = 60
+var time_left = 10
 
 # Vidas iniciales
 var vidas = 3  
 
 func _ready() -> void:
 	
-	limpiar_meteoritos()
-	limpiar_enemigos()
+	#limpiar_meteoritos()
+	#limpiar_enemigos()
 	
 	# Iniciar el temporizador
 	game_timer.start()
@@ -33,7 +33,7 @@ func _ready() -> void:
 	#borro la cinematica cuado inica el juego
 	_borrarCinematica()
 
-	pass
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -58,6 +58,7 @@ func _on_spawn_meteoro_timeout() -> void:
 func limpiar_meteoritos():
 	for meteoro in get_tree().get_nodes_in_group("Meteoros"):
 		meteoro.queue_free()
+		
 func limpiar_enemigos():
 	for meteoro in get_tree().get_nodes_in_group("Enemigos"):
 		meteoro.queue_free()
@@ -75,6 +76,7 @@ func _on_game_timer_timeout():
 		game_timer.stop()
 
 		_ganar_partida()
+
 
 func actualizar_vidas():
 	# Ocultar los sprites de corazón según la cantidad de vidas restantes
@@ -105,10 +107,9 @@ func _perder_partida() -> void:
 	# Cambia a la escena de Game Over de forma diferida
 	call_deferred("cambiar_a_game_over")
 	
-func _ganar_partida():
-	get_tree().change_scene_to_file("res://Nivel-2/escenas/nivel_2.tscn")	
+func _ganar_partida():	
+	get_tree().change_scene_to_file("res://Nivel-2/escenas/CinematicaNivel2.tscn")	
 	
-
 func cambiar_a_game_over() -> void:
 	get_tree().change_scene_to_file("res://Nivel-1/escenas/GameOver.tscn")	
 	

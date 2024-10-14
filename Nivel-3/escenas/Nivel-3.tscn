@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwthg7yr3r120"]
+
+[ext_resource type="Script" path="res://Nivel-3/escenas/nivel_3.gd" id="1_vnms6"]
+[ext_resource type="PackedScene" uid="uid://cj51vdn3afk37" path="res://Nivel-1/escenas/Nave.tscn" id="1_x5bdu"]
+[ext_resource type="Shader" path="res://Nivel-2/scripts/nivel_2.gdshader" id="2_4mpae"]
+[ext_resource type="Texture2D" uid="uid://dchxa7ccoktn4" path="res://Nivel-1/assets/imagenes/fondoespacio2.png" id="3_5yuid"]
+[ext_resource type="PackedScene" uid="uid://lj2epfum3qsi" path="res://Nivel-1/escenas/Balas.tscn" id="3_bsbac"]
+[ext_resource type="PackedScene" uid="uid://dfwhymo4f0t8s" path="res://Nivel-1/escenas/Meteorito.tscn" id="3_hj8el"]
+[ext_resource type="Texture2D" uid="uid://c7kpq5lebdah2" path="res://Nivel-3/assets/imagenes/JEFESINFONDO.png" id="6_he2k5"]
+[ext_resource type="Script" path="res://Nivel-3/scripts/jefe_final.gd" id="7_shoun"]
+[ext_resource type="PackedScene" uid="uid://o06ha7ysl7lv" path="res://Nivel-1/escenas/GameOver.tscn" id="8_5peu6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o40m4"]
+shader = ExtResource("2_4mpae")
+shader_parameter/scroll_speed = 0.4
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aoisi"]
+radius = 112.614
+
+[node name="Nivel-3" type="Node2D"]
+script = ExtResource("1_vnms6")
+
+[node name="BarraDeVida" type="ProgressBar" parent="."]
+offset_left = 9.0
+offset_top = 14.0
+offset_right = 257.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(0.87451, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.734029, 0.460629, 0.563873, 0.427451)
+
+[node name="SpawnMeteoro" type="Timer" parent="."]
+wait_time = 3.006
+autostart = true
+
+[node name="Nave" parent="." instance=ExtResource("1_x5bdu")]
+
+[node name="Balas" parent="." instance=ExtResource("3_bsbac")]
+visible = false
+
+[node name="Meteorito" parent="." instance=ExtResource("3_hj8el")]
+visible = false
+position = Vector2(202, 214)
+
+[node name="EscenarioEstrellas" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="EscenarioEstrellas"]
+motion_mirroring = Vector2(0, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="EscenarioEstrellas/ParallaxLayer"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_o40m4")
+position = Vector2(576, 325)
+scale = Vector2(0.611811, 0.676319)
+texture = ExtResource("3_5yuid")
+
+[node name="Jefe-final" type="Area2D" parent="." groups=["Jefe"]]
+position = Vector2(580, 134)
+script = ExtResource("7_shoun")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Jefe-final"]
+position = Vector2(-28.75, 35)
+scale = Vector2(0.244629, 0.251953)
+texture = ExtResource("6_he2k5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jefe-final"]
+position = Vector2(-25, 32)
+shape = SubResource("CircleShape2D_aoisi")
+
+[node name="GameOver" parent="." instance=ExtResource("8_5peu6")]
+visible = false
+
+[connection signal="timeout" from="SpawnMeteoro" to="." method="_on_spawn_meteoro_timeout"]
+[connection signal="body_entered" from="Balas" to="Jefe-final" method="_on_balas_body_entered"]

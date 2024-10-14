@@ -50,4 +50,12 @@ func _on_area_entered(area: Area2D) -> void:
 			area.destroy_enemigo()
 			area.call_deferred("queue_free")
 			queue_free()  # Eliminar la bala  # Llama a la función en cada enemigo
-	
+		elif area.is_in_group("Jefe"):  # Comprobar si el área es el jefe
+			# Reducir la vida del jefe llamando a la función _recibir_daño()
+			area._recibir_daño()
+			# Si la vida del jefe es menor o igual a 0, eliminar al jefe
+			if area.vida_actual <= 0:
+				area._destruir_jefe()
+				
+			# Eliminar la bala después de golpear al jefe
+			queue_free()
