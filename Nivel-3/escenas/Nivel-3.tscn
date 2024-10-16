@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwthg7yr3r120"]
+[gd_scene load_steps=14 format=3 uid="uid://bwthg7yr3r120"]
 
 [ext_resource type="Script" path="res://Nivel-3/escenas/nivel_3.gd" id="1_vnms6"]
 [ext_resource type="PackedScene" uid="uid://cj51vdn3afk37" path="res://Nivel-1/escenas/Nave.tscn" id="1_x5bdu"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://c7kpq5lebdah2" path="res://Nivel-3/assets/imagenes/JEFESINFONDO.png" id="6_he2k5"]
 [ext_resource type="Script" path="res://Nivel-3/scripts/jefe_final.gd" id="7_shoun"]
 [ext_resource type="PackedScene" uid="uid://o06ha7ysl7lv" path="res://Nivel-1/escenas/GameOver.tscn" id="8_5peu6"]
+[ext_resource type="VideoStream" path="res://Nivel-3/assets/imagenes/CINEMTICAVICTORIA.ogv" id="9_mtub7"]
+[ext_resource type="PackedScene" uid="uid://dovf44gpix5p1" path="res://Nivel-3/escenas/CinematicaNivel3.tscn" id="10_2brpw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o40m4"]
 shader = ExtResource("2_4mpae")
@@ -54,9 +56,8 @@ scale = Vector2(0.611811, 0.676319)
 texture = ExtResource("3_5yuid")
 
 [node name="Jefe-final" type="Area2D" parent="." groups=["Jefe"]]
-position = Vector2(580, 134)
+position = Vector2(580, 121)
 script = ExtResource("7_shoun")
-metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Jefe-final"]
 position = Vector2(-28.75, 35)
@@ -67,8 +68,20 @@ texture = ExtResource("6_he2k5")
 position = Vector2(-25, 32)
 shape = SubResource("CircleShape2D_aoisi")
 
+[node name="CinematicaFinalVictoria" type="VideoStreamPlayer" parent="."]
+offset_left = -1.0
+offset_top = -6.0
+offset_right = 1157.0
+offset_bottom = 660.0
+stream = ExtResource("9_mtub7")
+volume_db = -20.0
+
 [node name="GameOver" parent="." instance=ExtResource("8_5peu6")]
 visible = false
 
+[node name="CinematicaNivel3" parent="." instance=ExtResource("10_2brpw")]
+position = Vector2(-1, 0)
+
 [connection signal="timeout" from="SpawnMeteoro" to="." method="_on_spawn_meteoro_timeout"]
 [connection signal="body_entered" from="Balas" to="Jefe-final" method="_on_balas_body_entered"]
+[connection signal="finished" from="CinematicaFinalVictoria" to="." method="_on_cinematica_final_victoria_finished"]

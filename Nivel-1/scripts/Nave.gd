@@ -7,67 +7,63 @@ var explosion_escena = preload("res://Nivel-1/escenas/Explosion.tscn")
 const Balas_script = preload("res://Nivel-1/scripts/Balas.gd")
 
 
-var speed = 350  # Velocidad del movimiento en píxeles por segundo
-var velocity = Vector2.ZERO  # Vector de movimiento
-var time := 0.0  # Temporizador para disparos
-#var fire : bool
-
-
-
+var speed = 350  # velocidad del movimiento en píxeles por segundo
+var velocity = Vector2.ZERO  # vector de movimiento
+var time := 0.0  # temporizador para disparos
 
 func _process(delta):
 	# Reinicia el vector de movimiento cada fotograma
 	velocity = Vector2.ZERO
 
-	# Detecta las entradas del teclado
-	if Input.is_action_pressed("ui_right"):
+	# detecta las entradas del teclado
+	if Input.is_action_pressed("ui_right"): #flecha derecha
 		velocity.x += 1
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("ui_left"): #flecha izquierda
 		velocity.x -= 1
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("ui_down"): #flecha abajo
 		velocity.y += 1
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("ui_up"): #flecha arriba
 		velocity.y -= 1
 
-	# Normalizar el vector si hay movimiento diagonal
+	# normalizar el vector si hay movimiento diagonal
 	if velocity.length() > 0:
 		velocity = velocity.normalized()
 
-	# Mover el área
+	# mover el área
 	position += velocity * speed * delta
 
-	# Llamar a la función que limita el movimiento dentro de la pantalla
+	# llamar a la función que limita el movimiento dentro de la pantalla
 	_keep_within_screen()
 	
-	# Función para disparar 
+	# función para disparar 
 	fire_bullets(delta)
 
-# Función para mantener el Sprite dentro de los límites de la pantalla
+# función para mantener el sprite dentro de los límites de la pantalla
 func _keep_within_screen():
-	var screen_size = get_viewport_rect().size  # Obtener el tamaño de la pantalla
+	var screen_size = get_viewport_rect().size  # obtiene el tamaño de la pantalla
 
-	# Obtener el tamaño del CollisionShape2D
+	# obtiene el tamaño del CollisionShape2D
 	var shape = $Nave.shape
 	var area_size = Vector2.ZERO
 	
 	match shape:
 		CapsuleShape2D:
-			area_size = Vector2(shape.radius * 2, shape.height)  # Radio * 2 para el ancho, altura del capsule
+			area_size = Vector2(shape.radius * 2, shape.height)  # radio * 2 para el ancho, altura del capsule
 		RectangleShape2D:
-			area_size = shape.extents * 2  # Extents * 2 para obtener el ancho y alto
+			area_size = shape.extents * 2  # extents * 2 para obtener el ancho y alto
 		CircleShape2D:
-			area_size = Vector2(shape.radius * 2, shape.radius * 2)  # Radio * 2 para el ancho y alto
-		# Agrega más tipos de formas si es necesario
+			area_size = Vector2(shape.radius * 2, shape.radius * 2)  # radio * 2 para el ancho y alto
+		# agrega más tipos de formas si es necesario
 		_:
-			area_size = Vector2(0, 0)  # Por defecto, un área de 0
+			area_size = Vector2(0, 0)  # por defecto, un área de 0
 
-	# Limitar el movimiento en el eje X (horizontal)
+	# limitar el movimiento en el eje x (horizontal)
 	if position.x < area_size.x / 2:
 		position.x = area_size.x / 2
 	elif position.x > screen_size.x - area_size.x / 2:
 		position.x = screen_size.x - area_size.x / 2
 
-	# Limitar el movimiento en el eje Y (vertical)
+	# limitar el movimiento en el eje y (vertical)
 	if position.y < area_size.y / 2:
 		position.y = area_size.y / 2
 	elif position.y > screen_size.y - area_size.y / 2:
@@ -75,66 +71,64 @@ func _keep_within_screen():
 
 func fire_bullets(delta):
 	time += delta
-	var fire = Input.is_action_just_pressed("ui_accept")  # Detectar el disparo
+	var fire = Input.is_action_just_pressed("ui_accept")  # detectar el disparo
 
-	# Control de disparo hacia arriba con un intervalo de tiempo
+	# control de disparo hacia arriba con un intervalo de tiempo
 	if fire and time >= 0.2:
-		shoot_bullet(Balas_script.DireccionBala.TOP)  # Acceder a la dirección de la bala
-		time = 0.0  # Reiniciar el temporizador
+		shoot_bullet(Balas_script.DireccionBala.TOP)  # acceder a la dirección de la bala
+		time = 0.0  # reiniciar el temporizador
 
-# Detectar disparos hacia arriba o hacia abajo con otros inputs
-	if Input.is_action_just_pressed("ui_select"):  # Disparar hacia arriba
+	# detectar disparos hacia arriba o hacia abajo con otros inputs
+	if Input.is_action_just_pressed("ui_select"):  # disparar hacia arriba
 		shoot_bullet(Balas_script.DireccionBala.TOP)
-	elif Input.is_action_just_pressed("ui_cancel"):  # Disparar hacia abajo
+	elif Input.is_action_just_pressed("ui_cancel"):  # disparar hacia abajo
 		shoot_bullet(Balas_script.DireccionBala.BOTTOM)
-	
-	
-	#FUNCION DE DISPARAR BALA
+
+# función de disparar bala
 func shoot_bullet(direction):
-	var inst_bullet = ROCORRIDO_BALA.instantiate()  # Instancia la bala
-	get_parent().add_child(inst_bullet)  # Agrega la bala al nodo padre
-	inst_bullet.direction = direction  # Establece la dirección de la bala
+	var inst_bullet = ROCORRIDO_BALA.instantiate()  # instancia la bala
+	get_parent().add_child(inst_bullet)  # agrega la bala al nodo padre
+	inst_bullet.direction = direction  # establece la dirección de la bala
 	
-	# Obtén la posición global del Marker2D llamado "SpawnearBala" de la Nave
+	# obtener la posición global del Marker2D llamado "SpawnearBala" de la nave
 	var spawner_position = $SpawnearBala.global_position
-	inst_bullet.global_position = spawner_position  # Establece la posición inicial de la bala
+	inst_bullet.global_position = spawner_position  # establece la posición inicial de la bala
 	
-	# SE REPRODUCE EL SONIDO DE DISPARO POR CADA LLAMADA A ESTA FUNCION
+	# se reproduce el sonido de disparo por cada llamada a esta función
 	$SonidoDisparo.play()
 
-#funcion para destruir la nave
+# función para destruir la nave
 func destroy_nave():
-	# Cargar la escena de la explosión
+	# cargar la escena de la explosión
 	var explosion_scene = preload("res://Nivel-1/escenas/Explosion.tscn")
-	var explosion_instance = explosion_scene.instantiate()  # Instancia la explosión
+	var explosion_instance = explosion_scene.instantiate()  # instancia la explosión
 
-	# Colocar la explosión en la posición actual de la nave
+	# colocar la explosión en la posición actual de la nave
 	explosion_instance.global_position = global_position
 
-	# Añadir la explosión a la jerarquía de nodos
+	# añadir la explosión a la jerarquía de nodos
 	get_parent().add_child(explosion_instance)
 
-	# Buscar el nodo Explosion que es un AnimatedSprite2D usando la ruta proporcionada
+	# buscar el nodo explosion que es un AnimatedSprite2D usando la ruta proporcionada
 	var animated_sprite = explosion_instance.get_node_or_null("../Explosion")
 	
-	animated_sprite.play("explosion")  # Reproducir la animación "explosion"
-	print("Error: No se encontró el nodo Explosion en la explosión")
+	animated_sprite.play("explosion")  # reproducir la animación "explosion"
+	print("error: no se encontró el nodo Explosion en la explosión")
 
-	# Eliminar la nave
-	queue_free()
+	# eliminar la nave
+	#queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Meteoros"):
-		
 		destroy_nave()
-		# Usa call_deferred para posponer la destrucción del meteoro
-		# Usa call_deferred para limpiar los meteoritos y cambiar la escena
+		# usar call_deferred para posponer la destrucción del meteoro
+		# usar call_deferred para limpiar los meteoritos y cambiar la escena
 		get_parent()._perder_partida()
 		area.call_deferred("queue_free")
 	else:
 		if area.is_in_group("Jefe"):
 			destroy_nave()
-		# Usa call_deferred para posponer la destrucción del meteoro
-		# Usa call_deferred para limpiar los meteoritos y cambiar la escena
+			# usar call_deferred para posponer la destrucción del meteoro
+			# usar call_deferred para limpiar los meteoritos y cambiar la escena
 			get_parent()._perder_partida()
 			area.call_deferred("queue_free")

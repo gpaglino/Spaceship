@@ -25,7 +25,7 @@ texture = ExtResource("2_7njyt")
 [node name="SonidoDisparo" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-1, -53)
 stream = ExtResource("3_eup1o")
-volume_db = -18.667
+volume_db = -20.0
 
 [node name="SpawnearBala" type="Marker2D" parent="."]
 position = Vector2(0, -57)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c13fbvinucsav"]
+[gd_scene load_steps=10 format=3 uid="uid://c13fbvinucsav"]
 
 [ext_resource type="Script" path="res://Nivel-1/scripts/MenuInicio.gd" id="1_4rh70"]
 [ext_resource type="Texture2D" uid="uid://0f71b0u4p6iv" path="res://Nivel-2/assets/imagenes/e4db53c04c47209dfeca7a2cc31d8b47.jpg" id="2_ql2p1"]
 [ext_resource type="Texture2D" uid="uid://do044oq5dlrbn" path="res://Nivel-1/assets/imagenes/titulosinfondo.png" id="3_iksqj"]
 [ext_resource type="Texture2D" uid="uid://dkxu7wtrbgibl" path="res://Nivel-2/assets/imagenes/68496683-la-textura-del-patrón-de-la-placa-de-metal-para-fines-de-textura-antideslizante-en-efecto-clave-el.jpg" id="4_lec7s"]
 [ext_resource type="AudioStream" uid="uid://bbn6554iledti" path="res://Nivel-2/assets/Musica y sonidos/1. Into The Spaceship.wav" id="5_4kqb2"]
+[ext_resource type="PackedScene" uid="uid://dt5u2ey83u75r" path="res://Nivel-1/escenas/pantalla_creditos.tscn" id="5_f5hbl"]
 [ext_resource type="Script" path="res://Nivel-1/scripts/audio_stream_player_2d.gd" id="6_yd0mp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a6a6g"]
@@ -29,7 +30,7 @@ script = ExtResource("1_4rh70")
 layout_mode = 0
 offset_left = -2.0
 offset_top = 13.0
-offset_right = 1143.0
+offset_right = 1161.0
 offset_bottom = 670.0
 texture = ExtResource("2_ql2p1")
 expand_mode = 1
@@ -91,6 +92,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxTexture_5rv31")
 text = "CREDITOS
+
 "
 icon_alignment = 1
 
@@ -113,6 +115,9 @@ horizontal_alignment = 1
 [node name="HSlider" type="HSlider" parent="MenuInicio/VBoxContainer2"]
 layout_mode = 2
 
+[node name="pantallaCreditos" parent="MenuInicio" instance=ExtResource("5_f5hbl")]
+visible = false
+
 [node name="MusicaMenu" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_4kqb2")
 volume_db = -20.0
@@ -121,5 +126,5 @@ script = ExtResource("6_yd0mp")
 
 [connection signal="pressed" from="MenuInicio/VBoxContainer/jugar" to="MenuInicio" method="_on_jugar_pressed"]
 [connection signal="pressed" from="MenuInicio/VBoxContainer/salir" to="MenuInicio" method="_on_salir_pressed"]
-[connection signal="pressed" from="MenuInicio/VBoxContainer/creditos" to="MenuInicio" method="_on_salir_pressed"]
+[connection signal="pressed" from="MenuInicio/VBoxContainer/creditos" to="MenuInicio" method="_on_creditos_pressed"]
 [connection signal="value_changed" from="MenuInicio/VBoxContainer2/HSlider" to="MenuInicio" method="_on_h_slider_value_changed"]

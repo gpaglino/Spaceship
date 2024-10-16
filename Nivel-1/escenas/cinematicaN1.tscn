@@ -9,7 +9,7 @@ script = ExtResource("1_nei4x")
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 layout_direction = 1
 stream = ExtResource("2_f4nag")
-volume_db = -10.67
+volume_db = -20.0
 
 [node name="Timer" type="Timer" parent="."]
 

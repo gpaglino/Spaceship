@@ -15,5 +15,4 @@ func _ready() -> void:
 func _on_video_stream_player_2_finished() -> void:
 	
 	video_stream_player.stop()
-	# Asegúrate de que el video se haya detenido antes de cambiar de escena
 	get_tree().change_scene_to_file("res://Nivel-2/escenas/nivel_2.tscn")

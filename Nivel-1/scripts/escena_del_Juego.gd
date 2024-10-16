@@ -1,9 +1,6 @@
 extends Node2D
 
 var Meteoro = preload("res://Nivel-1/escenas/Meteorito.tscn")
-#var Bala = preload("res://Nivel-1/escenas/Balas.tscn")
-#var Nave = preload("res://Nivel-1/escenas/Nave.tscn")
-#var Explosion = preload("res://Nivel-1/escenas/Explosion.tscn")
 const CINEMATICA_N_1 = preload("res://Nivel-1/escenas/cinematicaN1.tscn")
 @onready var timer_label: Label = $TimerLabel
 @onready var game_timer: Timer = $gameTimer
@@ -14,23 +11,20 @@ const CINEMATICA_N_1 = preload("res://Nivel-1/escenas/cinematicaN1.tscn")
 
 
 # Tiempo máximo de juego 
-var time_left = 10
+var time_left = 60
 
 # Vidas iniciales
 var vidas = 3  
 
 func _ready() -> void:
-	
-	#limpiar_meteoritos()
-	#limpiar_enemigos()
-	
-	# Iniciar el temporizador
+
+# iniciar el timer
 	game_timer.start()
 
-	# Configurar el tiempo inicial en el Label
+#poner el tiempo en el label 
 	timer_label.text = str(time_left)
 	
-	#borro la cinematica cuado inica el juego
+#borro la cinematica cuado inica el juego
 	_borrarCinematica()
 
 
@@ -39,17 +33,17 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-#Funcion para spawnear los meteoros
+#funcion para spawnear los meteoros
 func _on_spawn_meteoro_timeout() -> void:
-	var meteoro_count = 2  # Número de meteoritos a spawn
+	var meteoro_count = 2  # Número de meteoritos que queremos spawnear
 
 	for i in range(meteoro_count):
 		var meteoro = Meteoro.instantiate()
 		meteoro.add_to_group("Meteoros")
-# Generar una posición aleatoria en la parte superior de la pantall
+# genera una posición aleatoria en la parte superior de la pantalla
 		var screen_width = get_viewport_rect().size.x
 		var random_x = randi_range(0, int(screen_width))  # Posición aleatoria en el eje X
-		meteoro.position = Vector2(random_x, -50)  # Aparece fuera de la pantalla, por encima
+		meteoro.position = Vector2(random_x, -50)  # para que aparesca -50 pixeles por encima de la pantalla 
 
 		# Añadir el meteoro a la escena
 		get_parent().add_child(meteoro)
@@ -107,9 +101,24 @@ func _perder_partida() -> void:
 	# Cambia a la escena de Game Over de forma diferida
 	call_deferred("cambiar_a_game_over")
 	
+func cambiar_a_game_over() -> void:
+	
+	var game_over_scene = preload("res://Nivel-1/escenas/GameOver.tscn").instantiate()
+	
+	# Comprueba que la escena de Game Over se cargó correctamente
+	if game_over_scene:
+		# Configura el nombre del nivel actual (Nivel 2 en este caso)
+		var nivel_origen = get_tree().current_scene.get_scene_file_path()  # Obtener la ruta de la escena actual
+		game_over_scene.set_nivel_origen(nivel_origen)  # pasar la ruta a la escena de Game Ove
+		
+		get_tree().root.add_child(game_over_scene)
+		
+		# eliminar la escena
+		get_tree().current_scene.queue_free()
+	else:
+		print("Error: No se pudo instanciar la escena de Game Over")
+
+		
 func _ganar_partida():	
 	get_tree().change_scene_to_file("res://Nivel-2/escenas/CinematicaNivel2.tscn")	
-	
-func cambiar_a_game_over() -> void:
-	get_tree().change_scene_to_file("res://Nivel-1/escenas/GameOver.tscn")	
 	

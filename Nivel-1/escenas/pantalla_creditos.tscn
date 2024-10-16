@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt5u2ey83u75r"]
+
+[ext_resource type="Texture2D" uid="uid://cfukryyo1a0pl" path="res://Nivel-1/assets/imagenes/CREDITOS.png" id="1_ololn"]
+[ext_resource type="Script" path="res://Nivel-1/scripts/pantalla_creditos.gd" id="1_pgyg2"]
+[ext_resource type="FontFile" uid="uid://cemyfvxunkiuo" path="res://Nivel-1/assets/fuentes/Kenney Future Square.ttf" id="3_rotsv"]
+
+[node name="pantallaCreditos" type="Node2D"]
+script = ExtResource("1_pgyg2")
+
+[node name="CREDITOS" type="TextureRect" parent="."]
+offset_top = -3.0
+offset_right = 1163.0
+offset_bottom = 670.0
+texture = ExtResource("1_ololn")
+expand_mode = 1
+
+[node name="Cerrar" type="Button" parent="."]
+offset_left = 945.0
+offset_top = 566.0
+offset_right = 1108.0
+offset_bottom = 632.0
+theme_override_fonts/font = ExtResource("3_rotsv")
+theme_override_font_sizes/font_size = 27
+text = "CERRAR"
+
+[connection signal="pressed" from="Cerrar" to="." method="_on_cerrar_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bupq32rhgylck"]
+[gd_scene load_steps=27 format=3 uid="uid://bupq32rhgylck"]
 
 [ext_resource type="Script" path="res://Nivel-2/scripts/nivel_2.gd" id="1_opfvc"]
 [ext_resource type="AudioStream" uid="uid://441jcralkavw" path="res://Nivel-2/assets/Musica y sonidos/nivel2.mp3" id="1_rplsf"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" path="res://Nivel-2/scripts/nivel_2.gdshader" id="6_j6k5m"]
 [ext_resource type="Texture2D" uid="uid://dchxa7ccoktn4" path="res://Nivel-1/assets/imagenes/fondoespacio2.png" id="7_oi6wr"]
 [ext_resource type="PackedScene" uid="uid://bldhqy4b5mxqh" path="res://Nivel-2/escenas/CinematicaNivel2.tscn" id="10_t1gjc"]
+[ext_resource type="PackedScene" uid="uid://dlywjlgpx1n4m" path="res://Nivel-1/escenas/spawn_meteoro.tscn" id="12_n3co2"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ghi1x"]
 load_path = "res://.godot/imported/explosions_sprite.png-1f544245d4716d5ea273ed8c50a6f599.ctex"
@@ -124,9 +125,10 @@ position = Vector2(592, 546)
 visible = false
 position = Vector2(137, 10)
 
-[node name="Meteorito" parent="." instance=ExtResource("5_8q7na")]
-
 [node name="BalasEnemigos" parent="." instance=ExtResource("5_0qoaj")]
+visible = false
+
+[node name="Meteorito" parent="." instance=ExtResource("5_8q7na")]
 visible = false
 
 [node name="Enemigos" parent="." groups=["Enemigos"] instance=ExtResource("5_mny7e")]
@@ -150,5 +152,7 @@ scale = Vector2(0.611811, 0.676319)
 texture = ExtResource("7_oi6wr")
 
 [node name="CinematicaNivel2" parent="." instance=ExtResource("10_t1gjc")]
+
+[node name="SpawnMeteoro" parent="." instance=ExtResource("12_n3co2")]
 
 [connection signal="timeout" from="SpawnEnemigos" to="Enemigos" method="_on_spawn_enemigos_timeout"]

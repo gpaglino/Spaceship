@@ -21,7 +21,7 @@ position = Vector2(2, 1)
 scale = Vector2(0.0460938, 0.05)
 texture = ExtResource("2_78weo")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="TimerEnemigos" type="Timer" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(2, 14)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://cnh7a8cnv6wom"]
+[gd_scene load_steps=26 format=3 uid="uid://cnh7a8cnv6wom"]
 
 [ext_resource type="Script" path="res://Nivel-1/scripts/escena_del_Juego.gd" id="1_sr8fm"]
 [ext_resource type="FontFile" uid="uid://cemyfvxunkiuo" path="res://Nivel-1/assets/fuentes/Kenney Future Square.ttf" id="2_gpi2h"]
 [ext_resource type="Texture2D" uid="uid://c3q2v0jbp436c" path="res://Nivel-2/assets/imagenes/OIG3.jpeg" id="3_0fdsq"]
 [ext_resource type="PackedScene" uid="uid://lj2epfum3qsi" path="res://Nivel-1/escenas/Balas.tscn" id="3_cbkh7"]
+[ext_resource type="PackedScene" uid="uid://dlywjlgpx1n4m" path="res://Nivel-1/escenas/spawn_meteoro.tscn" id="3_lw8c3"]
 [ext_resource type="PackedScene" uid="uid://cj51vdn3afk37" path="res://Nivel-1/escenas/Nave.tscn" id="4_cwsug"]
 [ext_resource type="PackedScene" uid="uid://dfwhymo4f0t8s" path="res://Nivel-1/escenas/Meteorito.tscn" id="5_t0iwo"]
 [ext_resource type="PackedScene" uid="uid://ddnuhqyjb0a6m" path="res://Nivel-1/escenas/Explosion.tscn" id="7_k3d83"]
@@ -132,9 +133,8 @@ text = "60"
 label_settings = SubResource("LabelSettings_flpax")
 horizontal_alignment = 1
 
-[node name="SpawnMeteoro" type="Timer" parent="."]
-wait_time = 3.006
-autostart = true
+[node name="SpawnMeteoro" parent="." instance=ExtResource("3_lw8c3")]
+wait_time = 2.0
 
 [node name="gameTimer" type="Timer" parent="."]
 process_callback = 0

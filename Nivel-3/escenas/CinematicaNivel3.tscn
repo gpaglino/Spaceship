@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dovf44gpix5p1"]
+
+[ext_resource type="Script" path="res://Nivel-3/scripts/cinematica_nivel_3.gd" id="1_x74o7"]
+[ext_resource type="VideoStream" path="res://Nivel-3/assets/imagenes/CINEMATICANIVEL3.ogv" id="2_i46lm"]
+
+[node name="CinematicaNivel3" type="Node2D"]
+script = ExtResource("1_x74o7")
+
+[node name="VideoStreamPlayerN3" type="VideoStreamPlayer" parent="."]
+offset_top = -2.0
+offset_right = 1150.0
+offset_bottom = 650.0
+stream = ExtResource("2_i46lm")
+volume_db = -20.0
+
+[node name="TimerN3" type="Timer" parent="."]
+wait_time = 25.0
+
+[connection signal="finished" from="VideoStreamPlayerN3" to="." method="_on_video_stream_player_n_3_finished"]

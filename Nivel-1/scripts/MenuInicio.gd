@@ -1,6 +1,7 @@
 extends Control
 
 const CINEMATICA_N_1 = preload("res://Nivel-1/escenas/cinematicaN1.tscn")
+@onready var pantalla_creditos: Node2D = $pantallaCreditos
 
 # Nuevos límites de volumen
 var volumen_minimo = -40
@@ -31,3 +32,9 @@ func _on_jugar_pressed() -> void:
 # Función que se llama cuando presionas "Salir"
 func _on_salir_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_creditos_pressed() -> void:
+	# Mostrar el TextureRect de los créditos
+	if pantalla_creditos:
+		pantalla_creditos.visible = true

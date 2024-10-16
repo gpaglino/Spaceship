@@ -1,5 +1,14 @@
 extends Area2D
 
+@onready var cinematica_final_victoria: VideoStreamPlayer = $"../CinematicaFinalVictoria"
+@onready var meteorito: Meteorito = $"../Meteorito"
+@onready var spawn_meteoro: Timer = $"../SpawnMeteoro"
+
+const MENU_INICIO = preload("res://Nivel-1/escenas/menu_inicio.tscn")
+# Referencia a la barra de vida (estática, fuera del jefe-final)
+@onready var barra_vida: ProgressBar = $"../BarraDeVida"
+@onready var balas: Balas = $"../Balas"
+
 # Variables
 var vida_maxima = 30  # Vida máxima del jefe-final
 var vida_actual = 30  # Vida actual del jefe-final
@@ -9,9 +18,7 @@ var tiempo_cambio_direccion = 2.0  # Tiempo para cambiar de dirección
 var tiempo_desde_cambio = 0.0  # Temporizador para controlar los cambios de dirección
 var tamaño_pantalla = Vector2()  # Tamaño de la pantalla
 
-# Referencia a la barra de vida (estática, fuera del jefe-final)
-@onready var barra_vida: ProgressBar = $"../BarraDeVida"
-@onready var balas: Balas = $"../Balas"
+
 
 
 # Se llama cuando el nodo entra en el árbol de la escena por primera vez
@@ -57,12 +64,28 @@ func _verificar_limites() -> void:
 func _recibir_daño() -> void:
 	vida_actual -= 1  # Reducir la vida en 1 por cada disparo
 	barra_vida.value = vida_actual  # Actualizar la barra de vida
-	
+
 	# Verificar si la vida llega a 0
 	if vida_actual <= 0:
 		_destruir_jefe()
 
 # Función para destruir al jefe-final
 func _destruir_jefe() -> void:
-	# Puedes añadir efectos de explosión o animaciones aquí
+		# Detener cualquier acción del jefe
 	queue_free()  # Eliminar al jefe-final
+
+		# Reproducir la cinemática de victoria
+	if cinematica_final_victoria:
+		cinematica_final_victoria.visible = true
+		cinematica_final_victoria.play()
+	#oculto los meteoritos y freno el spawn de meteoros para que no se vean con la cinematica
+	spawn_meteoro.stop()
+	limpiar_meteoritos()
+	
+
+
+# Función para ocultar todos los meteoritos en la escena
+func limpiar_meteoritos() -> void:
+# Obtener todos los nodos en el grupo "Meteoros" y ocultarlos
+	for meteoro in get_tree().get_nodes_in_group("Meteoros"):
+		meteoro.queue_free()

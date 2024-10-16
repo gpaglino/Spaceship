@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmkxlcqub02qy"]
+
+[ext_resource type="VideoStream" path="res://Nivel-3/assets/imagenes/CINEMTICAVICTORIA.ogv" id="1_bqaha"]
+
+[sub_resource type="GDScript" id="GDScript_di88g"]
+script/source = "extends Node2D
+
+@onready var video_stream_player_victoria: VideoStreamPlayer = $VideoStreamPlayerVictoria
+@onready var timer_victoria: Timer = $TimerVictoria
+
+
+func _ready() -> void:
+	
+	timer_victoria.wait_time = 25
+	timer_victoria.one_shot = true
+	timer_victoria.start()
+	video_stream_player_victoria.play()
+
+
+func _on_video_stream_player_n_3_finished() -> void:
+	
+	video_stream_player_victoria.stop()
+	# Asegúrate de que el video se haya detenido antes de cambiar de escena
+	get_tree().change_scene_to_file(\"res://Nivel-1/escenas/menu_inicio.tscn\")
+"
+
+[node name="CinematicaFinalVictoria" type="Node2D"]
+script = SubResource("GDScript_di88g")
+
+[node name="TimerVictoria" type="Timer" parent="."]
+one_shot = true
+
+[node name="VideoStreamPlayerVictoria" type="VideoStreamPlayer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("1_bqaha")
+volume_db = -20.0

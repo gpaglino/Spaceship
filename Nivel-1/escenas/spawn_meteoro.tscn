@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://dlywjlgpx1n4m"]
+
+[node name="SpawnMeteoro" type="Timer"]
+autostart = true
