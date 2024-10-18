@@ -71,17 +71,34 @@ func _recibir_daño() -> void:
 
 # Función para destruir al jefe-final
 func _destruir_jefe() -> void:
+		var explosion_scene = preload("res://Nivel-1/escenas/Explosion.tscn")
+		var explosion_instance = explosion_scene.instantiate()  # instancia la explosión
+
+	# colocar la explosión en la posición actual del meteorito
+		explosion_instance.global_position = global_position
+
+	# añadir la explosión a la jerarquía de nodos
+		get_parent().add_child(explosion_instance)
+
+	# buscar el nodo explosion que es un AnimatedSprite2D usando la ruta proporcionada
+		var animated_sprite = explosion_instance.get_node_or_null("../Explosion")
+	
+		animated_sprite.play("explosion")  # reproducir la animación "explosion"
+		print("error: no se encontró el nodo Explosion en la explosión")
 		# Detener cualquier acción del jefe
-	queue_free()  # Eliminar al jefe-final
+		call_deferred("queue_free")  # Eliminar al jefe-final
 
 		# Reproducir la cinemática de victoria
-	if cinematica_final_victoria:
-		cinematica_final_victoria.visible = true
-		cinematica_final_victoria.play()
+		if cinematica_final_victoria:
+			cinematica_final_victoria.visible = true
+			cinematica_final_victoria.play()
 	#oculto los meteoritos y freno el spawn de meteoros para que no se vean con la cinematica
-	spawn_meteoro.stop()
-	limpiar_meteoritos()
-	
+		spawn_meteoro.stop()
+		limpiar_meteoritos()
+		get_parent().desactivar_disparo_nave()
+		
+
+
 
 
 # Función para ocultar todos los meteoritos en la escena

@@ -3,6 +3,7 @@ extends Node2D
 const Meteoro = preload("res://Nivel-1/escenas/Meteorito.tscn")
 const MENU_INICIO = preload("res://Nivel-1/escenas/menu_inicio.tscn")
 @onready var cinematica_nivel_3: Node2D = $CinematicaNivel3
+@onready var nave: Nave = $Nave
 
 
 func _ready() -> void:
@@ -42,6 +43,13 @@ func limpiar_meteoritos():
 	# eliminar todos los meteoritos en el grupo "Meteoros"
 	for meteoro in get_tree().get_nodes_in_group("Meteoros"):
 		meteoro.queue_free()	
+		
+func desactivar_disparo_nave():
+	if nave:  # comprueba si el nodo se encontró
+		nave.puede_disparar = false  # cambia la variable puede_disparar a false
+		print("Disparo desactivado.") 
+	else:
+		print("El nodo 'Nave' no se encontró.")
 			
 func cambiar_a_game_over() -> void:
 	# aquí 'Nivel1', 'Nivel2', 'Nivel3' es el nombre que pasas según el nivel actual

@@ -59,5 +59,6 @@ func _on_area_entered(area: Area2D) -> void:
 			#si la vida del jefe es menor o igual a 0, eliminar al jefe
 			if area.vida_actual <= 0:
 				area._destruir_jefe()
+				
 			# eliminar la bala después de golpear al jefe
 			queue_free()

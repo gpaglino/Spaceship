@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bldhqy4b5mxqh"]
 
 [ext_resource type="Script" path="res://Nivel-2/scripts/CinematicaNivel2.gd" id="1_8patl"]
-[ext_resource type="VideoStream" path="res://Nivel-2/assets/imagenes/cinematicanivel2.ogv" id="2_0gic5"]
+[ext_resource type="VideoStream" path="res://Nivel-2/assets/imagenes/cinematicaN2.ogv" id="2_lqsi6"]
 
 [node name="CinematicaNivel2" type="Node2D"]
 position = Vector2(5, 3)
@@ -12,7 +12,8 @@ offset_left = -21.0
 offset_top = -23.0
 offset_right = 1179.0
 offset_bottom = 659.0
-stream = ExtResource("2_0gic5")
+stream = ExtResource("2_lqsi6")
+volume_db = -20.0
 expand = true
 
 [node name="Timer2" type="Timer" parent="."]

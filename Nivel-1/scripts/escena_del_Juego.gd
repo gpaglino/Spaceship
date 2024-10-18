@@ -27,13 +27,12 @@ func _ready() -> void:
 #borro la cinematica cuado inica el juego
 	_borrarCinematica()
 
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
+	
 
-#funcion para spawnear los meteoros
+	
 func _on_spawn_meteoro_timeout() -> void:
 	var meteoro_count = 2  # Número de meteoritos que queremos spawnear
 
@@ -90,7 +89,7 @@ func _on_area_saturno_area_entered(area: Area2D) -> void:
 		if area.is_in_group("Meteoros"):
 			vidas -= 1  # Reducir las vidas
 			actualizar_vidas()  # Llamar a la función para actualizar el HUD
-
+			area.destroy()
 		if vidas <= 0:
 			_perder_partida()
 			

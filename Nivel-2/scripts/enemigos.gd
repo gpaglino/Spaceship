@@ -4,8 +4,8 @@ var bullet_scene = preload("res://Nivel-2/escenas/balas_enemigos.tscn")
 
 var speed = 80  # velocidad de movimiento horizontal
 var direction = 1  # dirección inicial (1 para derecha, -1 para izquierda)
-var boundary_left = 10  # límite izquierdo
-var boundary_right = 1000  # límite derecho
+var boundary_left = 5  # límite izquierdo
+var boundary_right = 1150  # límite derecho
 var random_shoot_chance = 0.005  # probabilidad de disparar por frame (ajusta este valor)
 
 enum DireccionBala {

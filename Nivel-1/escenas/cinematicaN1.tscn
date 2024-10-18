@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://fekwjjjiyufd"]
 
 [ext_resource type="Script" path="res://Nivel-1/scripts/Cinematica.gd" id="1_nei4x"]
-[ext_resource type="VideoStream" path="res://Nivel-1/assets/imagenes/CINEMATICA FINALOGV.ogv" id="2_f4nag"]
+[ext_resource type="VideoStream" path="res://Nivel-1/assets/imagenes/N1cinematica.ogv" id="2_igx8w"]
 
 [node name="CinematicaN1" type="Node2D"]
 script = ExtResource("1_nei4x")
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 layout_direction = 1
-stream = ExtResource("2_f4nag")
+stream = ExtResource("2_igx8w")
 volume_db = -20.0
 
 [node name="Timer" type="Timer" parent="."]

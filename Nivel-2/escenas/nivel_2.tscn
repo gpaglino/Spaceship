@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bupq32rhgylck"]
+[gd_scene load_steps=29 format=3 uid="uid://bupq32rhgylck"]
 
 [ext_resource type="Script" path="res://Nivel-2/scripts/nivel_2.gd" id="1_opfvc"]
 [ext_resource type="AudioStream" uid="uid://441jcralkavw" path="res://Nivel-2/assets/Musica y sonidos/nivel2.mp3" id="1_rplsf"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dchxa7ccoktn4" path="res://Nivel-1/assets/imagenes/fondoespacio2.png" id="7_oi6wr"]
 [ext_resource type="PackedScene" uid="uid://bldhqy4b5mxqh" path="res://Nivel-2/escenas/CinematicaNivel2.tscn" id="10_t1gjc"]
 [ext_resource type="PackedScene" uid="uid://dlywjlgpx1n4m" path="res://Nivel-1/escenas/spawn_meteoro.tscn" id="12_n3co2"]
+[ext_resource type="PackedScene" uid="uid://bdevc1gbmhucw" path="res://Nivel-1/escenas/pausa.tscn" id="13_fpbop"]
+[ext_resource type="Script" path="res://Nivel-2/scripts/pausa.gd" id="14_wnd1i"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ghi1x"]
 load_path = "res://.godot/imported/explosions_sprite.png-1f544245d4716d5ea273ed8c50a6f599.ctex"
@@ -110,12 +112,13 @@ shader_parameter/scroll_speed = 0.4
 [node name="nivel_2" type="Node2D"]
 position = Vector2(1, 1)
 script = ExtResource("1_opfvc")
+metadata/_edit_group_ = true
 
 [node name="SpawnEnemigos" type="Timer" parent="."]
 
-[node name="Musica_nivel2" type="AudioStreamPlayer" parent="."]
+[node name="SonidoN2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_rplsf")
-volume_db = -52.391
+volume_db = -30.0
 autoplay = true
 
 [node name="Nave" parent="." instance=ExtResource("4_ik8or")]
@@ -140,6 +143,7 @@ visible = false
 sprite_frames = SubResource("SpriteFrames_gayto")
 
 [node name="EscenarioEstrellas" type="ParallaxBackground" parent="."]
+process_mode = 1
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="EscenarioEstrellas"]
 motion_mirroring = Vector2(0, 648)
@@ -154,5 +158,8 @@ texture = ExtResource("7_oi6wr")
 [node name="CinematicaNivel2" parent="." instance=ExtResource("10_t1gjc")]
 
 [node name="SpawnMeteoro" parent="." instance=ExtResource("12_n3co2")]
+
+[node name="pausa" parent="." instance=ExtResource("13_fpbop")]
+script = ExtResource("14_wnd1i")
 
 [connection signal="timeout" from="SpawnEnemigos" to="Enemigos" method="_on_spawn_enemigos_timeout"]

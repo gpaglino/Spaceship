@@ -5,7 +5,7 @@ extends Node2D
 const ESCENA_DEL_JUEGO = preload("res://Nivel-1/escenas/escena_del_Juego.tscn")
 
 func _ready() -> void:
-	timer.wait_time = 22
+	timer.wait_time = 25
 	timer.one_shot = true
 	timer.start()
 	video_stream_player.play()

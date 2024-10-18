@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bdevc1gbmhucw"]
+
+[node name="pausa" type="CanvasLayer"]
+process_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -8.0
+offset_right = 13.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.261, 0.261, 0.261, 0.8)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 146.0
+offset_top = 207.0
+offset_right = -149.0
+offset_bottom = -234.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "EL JUEGO ESTA EN PAUSA
+ PRESION ESCAPE PARA REANUDAR"
+horizontal_alignment = 1
+vertical_alignment = 1

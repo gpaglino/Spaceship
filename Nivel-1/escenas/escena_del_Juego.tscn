@@ -1,13 +1,16 @@
-[gd_scene load_steps=26 format=3 uid="uid://cnh7a8cnv6wom"]
+[gd_scene load_steps=29 format=3 uid="uid://cnh7a8cnv6wom"]
 
 [ext_resource type="Script" path="res://Nivel-1/scripts/escena_del_Juego.gd" id="1_sr8fm"]
 [ext_resource type="FontFile" uid="uid://cemyfvxunkiuo" path="res://Nivel-1/assets/fuentes/Kenney Future Square.ttf" id="2_gpi2h"]
 [ext_resource type="Texture2D" uid="uid://c3q2v0jbp436c" path="res://Nivel-2/assets/imagenes/OIG3.jpeg" id="3_0fdsq"]
+[ext_resource type="Script" path="res://Nivel-1/scripts/pausa.gd" id="3_80rmo"]
 [ext_resource type="PackedScene" uid="uid://lj2epfum3qsi" path="res://Nivel-1/escenas/Balas.tscn" id="3_cbkh7"]
 [ext_resource type="PackedScene" uid="uid://dlywjlgpx1n4m" path="res://Nivel-1/escenas/spawn_meteoro.tscn" id="3_lw8c3"]
 [ext_resource type="PackedScene" uid="uid://cj51vdn3afk37" path="res://Nivel-1/escenas/Nave.tscn" id="4_cwsug"]
 [ext_resource type="PackedScene" uid="uid://dfwhymo4f0t8s" path="res://Nivel-1/escenas/Meteorito.tscn" id="5_t0iwo"]
 [ext_resource type="PackedScene" uid="uid://ddnuhqyjb0a6m" path="res://Nivel-1/escenas/Explosion.tscn" id="7_k3d83"]
+[ext_resource type="PackedScene" uid="uid://bdevc1gbmhucw" path="res://Nivel-1/escenas/pausa.tscn" id="9_ooq57"]
+[ext_resource type="AudioStream" uid="uid://dtmva6nsduqpk" path="res://Nivel-1/assets/Musica y sonidos/SonidoNivel1Ambiente.mp3" id="11_pgcym"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_flpax"]
 line_spacing = 1.0
@@ -108,7 +111,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvnxt"]
-size = Vector2(1156, 28)
+size = Vector2(1156, 51)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jmsx7"]
 load_path = "res://.godot/imported/heaartsinfon.png-f55988338b0080850c2fac703feeb0d7.ctex"
@@ -119,10 +122,16 @@ font_size = 18
 font_color = Color(0.54902, 0.921569, 1, 0.564706)
 
 [node name="EscenaDelJuego" type="Node2D" groups=["Meteoros", "Naves"]]
+process_mode = 3
 position = Vector2(-7, -1)
 script = ExtResource("1_sr8fm")
 
+[node name="pausa" parent="." instance=ExtResource("9_ooq57")]
+process_mode = 0
+script = ExtResource("3_80rmo")
+
 [node name="TimerLabel" type="Label" parent="."]
+process_mode = 1
 top_level = true
 offset_left = 498.0
 offset_top = 25.0
@@ -134,9 +143,11 @@ label_settings = SubResource("LabelSettings_flpax")
 horizontal_alignment = 1
 
 [node name="SpawnMeteoro" parent="." instance=ExtResource("3_lw8c3")]
+process_mode = 1
 wait_time = 2.0
 
 [node name="gameTimer" type="Timer" parent="."]
+process_mode = 1
 process_callback = 0
 autostart = true
 
@@ -149,13 +160,16 @@ texture = ExtResource("3_0fdsq")
 expand_mode = 1
 
 [node name="Balas" parent="." instance=ExtResource("3_cbkh7")]
+process_mode = 1
 visible = false
 position = Vector2(573, 189)
 
 [node name="Nave" parent="." instance=ExtResource("4_cwsug")]
+process_mode = 1
 position = Vector2(616, 512)
 
 [node name="Meteorito" parent="." groups=["Meteoros"] instance=ExtResource("5_t0iwo")]
+process_mode = 1
 position = Vector2(569, 140)
 angular_damp = 0.0
 
@@ -169,7 +183,7 @@ frame_progress = 0.0
 [node name="AreaSaturno" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaSaturno"]
-position = Vector2(585, 665)
+position = Vector2(581, 717.5)
 shape = SubResource("RectangleShape2D_fvnxt")
 
 [node name="Vidas" type="Control" parent="."]
@@ -204,6 +218,11 @@ offset_right = 97.0
 offset_bottom = 40.0
 text = "SATURNO"
 label_settings = SubResource("LabelSettings_c1c5o")
+
+[node name="SonidoN1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_pgcym")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="timeout" from="SpawnMeteoro" to="." method="_on_spawn_meteoro_timeout"]
 [connection signal="timeout" from="gameTimer" to="." method="_on_game_timer_timeout"]

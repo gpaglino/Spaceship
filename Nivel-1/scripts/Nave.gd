@@ -2,11 +2,11 @@ extends Area2D
 
 class_name Nave
 
-const ROCORRIDO_BALA = preload("res://Nivel-1/escenas/Balas.tscn") 
+const RECORRIDO_BALA = preload("res://Nivel-1/escenas/Balas.tscn") 
 var explosion_escena = preload("res://Nivel-1/escenas/Explosion.tscn")
 const Balas_script = preload("res://Nivel-1/scripts/Balas.gd")
 
-
+var puede_disparar = true  # bandera para controlar si puede disparar
 var speed = 350  # velocidad del movimiento en píxeles por segundo
 var velocity = Vector2.ZERO  # vector de movimiento
 var time := 0.0  # temporizador para disparos
@@ -85,17 +85,20 @@ func fire_bullets(delta):
 		shoot_bullet(Balas_script.DireccionBala.BOTTOM)
 
 # función de disparar bala
-func shoot_bullet(direction):
-	var inst_bullet = ROCORRIDO_BALA.instantiate()  # instancia la bala
-	get_parent().add_child(inst_bullet)  # agrega la bala al nodo padre
-	inst_bullet.direction = direction  # establece la dirección de la bala
-	
-	# obtener la posición global del Marker2D llamado "SpawnearBala" de la nave
-	var spawner_position = $SpawnearBala.global_position
-	inst_bullet.global_position = spawner_position  # establece la posición inicial de la bala
-	
-	# se reproduce el sonido de disparo por cada llamada a esta función
-	$SonidoDisparo.play()
+func shoot_bullet(direccion):
+	if puede_disparar:  # Verifica si puede disparar es true
+		var inst_bullet = RECORRIDO_BALA.instantiate()  # instancia la bala
+		get_parent().add_child(inst_bullet)  # agrega la bala al nodo padre
+		inst_bullet.direction = direccion  # establece la dirección de la bala
+
+		# obtiene la posición global del Marker2D llamado "SpawnearBala" de la nave
+		var spawner_position = $SpawnearBala.global_position
+		inst_bullet.global_position = spawner_position  # establece la posición inicial de la bala
+
+		# se reproduce el sonido de disparo por cada llamada a esta función
+		$SonidoDisparo.play()
+	else:
+		print("Disparo desactivado")  # mensaje si no se puede disparar
 
 # función para destruir la nave
 func destroy_nave():
